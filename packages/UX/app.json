@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "Smartcloud",
+    "slug": "smartcloudgg",
+    "scheme": "smartcloud",
+    "privacy": "public",
+    "sdkVersion": "36.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "1.0.0",
+    "icon": "./src/assets/img/icon.png",
+    "splash": {
+      "image": "./src/assets/img/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#2e2d3f"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "androidStatusBar": {
+     "backgroundColor": "#060607"
+   },
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "tgt-media-ltd",
+            "project": "smartcloud",
+            "authToken": "7380544667f04a51a5ce5c97c47b5e583afc8b71dc234bbfbafe973e714bfebf"
+          }
+        }
+      ]
+    }
+  }
+}
