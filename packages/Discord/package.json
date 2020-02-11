@@ -1,0 +1,43 @@
+{
+  "name": "@smartcloudai/discord",
+  "version": "0.1.0-beta.0",
+  "description": "Smart Cloud Discord Module Base Code",
+  "author": {
+    "name": "TGT Media Ltd"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/tgtmedialtd/smartcloud/modules/discord-module"
+  },
+  "license": "GPLv3",
+  "scripts": {
+    "release": "standard-version",
+    "prerelease": "standard-version --prerelease"
+  },
+  "main": "./lib/init.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "smartcloud": {
+    "packageType": "extension"
+  },
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "events": "^3.0.0"
+  },
+  "optionalDependencies": {
+    "@smartcloudai/core": "^0.1.0-beta.0"
+  },
+  "devDependencies": {
+    "typescript": "^3.7.3",
+    "@types/fs-extra": "^5.1.0",
+    "@types/node": "^13.1.1",
+    "standard-version": "^7.0.1",
+    "tslint": "^5.20.1"
+  },
+  "gitHead": "734e2349b4949ddb94e9c882149187608f3ee1db"
+}
