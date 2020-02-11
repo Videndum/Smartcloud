@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "noImplicitReturns": true,
+      "noUnusedLocals": true,
+      "pretty": true,
+      "sourceMap": false,
+      "inlineSources": true,
+      "strict": true,
+      "allowJs": false,
+      "target": "ES2017",
+      "resolveJsonModule": true,
+      "esModuleInterop": true,
+      "baseUrl": "/",
+      "declaration": false
+    },
+    "compileOnSave": true,
+    "include": [
+        "./default/**/*"
+    ]
+}

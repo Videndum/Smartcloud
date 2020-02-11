@@ -1,0 +1,17 @@
+{
+  "name": "ping",
+  "alias": [],
+  "version": "2",
+  "description": "Ping the bot",
+  "helpInformation": "",
+  "permissions": "none",
+  "usage": "<action>",
+  "args": true,
+  "minargs": 0,
+  "localargs": {
+  },
+  "guildOnly": false,
+  "execute": [
+      {"action": "sendMessage", "global": {"vars": {"location": "+[getChannel.0.channelID]+", "message": "ping"}}, "typing": {"active": true, "mode": "channel"} }
+  ]
+}

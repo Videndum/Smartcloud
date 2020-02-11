@@ -1,0 +1,20 @@
+{
+  "name": "pong",
+  "alias": [],
+  "version": "2",
+  "description": "Demo action included in the default module",
+  "helpInformation": "",
+  "permissions": "none",
+  "usage": "<action>",
+  "cooldown": 1,
+  "args": true,
+  "minargs": 0,
+  "localargs": {
+    "name": "TGTGamer#0001",
+    "local": 1
+  },
+  "guildOnly": true,
+  "execute": [
+      "pong"
+  ]
+}
