@@ -1,6 +1,6 @@
 {
   "name": "@smartcloudai/server",
-  "version": "0.1.0-beta.0",
+  "version": "0.1.0-beta.1",
   "repository": {
     "type": "git",
     "url": "https://gitlab.com/tgtmedialtd/smartcloud/core.git"
@@ -40,7 +40,7 @@
     "prod": "nodemon -r source-map-support/register --cwd ./lib/index.js"
   },
   "dependencies": {
-    "@smartcloudai/core": "^0.1.0-beta.0",
+    "@smartcloudai/core": "^0.1.0-beta.2",
     "@smartcloudai/discord": "^0.1.0-beta.0",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
@@ -48,10 +48,10 @@
     "pm2": "^4.2.1"
   },
   "devDependencies": {
-    "tslint": "^5.20.1",
-    "typescript": "^3.7.3",
     "@types/body-parser": "^1.17.1",
-    "@types/express": "^4.17.2"
+    "@types/express": "^4.17.2",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.3"
   },
   "nodemonConfig": {
     "ignore": [
