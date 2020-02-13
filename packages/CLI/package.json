@@ -29,7 +29,7 @@
     "typescript": "^3.7.3"
   },
   "dependencies": {
-    "request": "^2.88.0",
+    "@smartcloudai/core": "^0.1.0-beta.0",
     "boxen": "^4.2.0",
     "cmdify": "0.0.4",
     "fs-extra": "^8.1.0",
@@ -39,9 +39,9 @@
     "inquirer-fuzzy-path": "^2.2.0",
     "inquirer-prompt-suggest": "^0.1.0",
     "jsdoc-to-markdown": "^5.0.3",
+    "request": "^2.88.0",
     "simple-git": "^1.129.0",
     "vorpal": "^1.12.0"
   },
-  "optionalDependencies": {},
   "gitHead": "734e2349b4949ddb94e9c882149187608f3ee1db"
 }
