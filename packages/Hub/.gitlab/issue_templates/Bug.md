@@ -3,6 +3,7 @@
 <!-- Summarize the bug encountered concisely -->
 
 <!-- If the issue is related to any other issue, please link it here -->
+/relate #1
 
 ## Steps to reproduce
 
