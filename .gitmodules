@@ -3,25 +3,25 @@
 	url = https://github.com/TGTMedia/smartcloud_wiki.git
 [submodule "packages/discord"]
 	path = packages/discord
-	url = https://gitlab.com/tgtmedialtd/smartcloud/discord.git
+	url = git@gitlab.com:tgtmedialtd/smartcloud/discord.git
 [submodule "packages/template"]
 	path = packages/template
-	url = https://gitlab.com/tgtmedialtd/smartcloud/template.git
+	url = git@gitlab.com:tgtmedialtd/smartcloud/template.git
 [submodule "packages/server"]
 	path = packages/server
-	url = https://gitlab.com/tgtmedialtd/smartcloud/server.git
+	url = git@gitlab.com:tgtmedialtd/smartcloud/server.git
 [submodule "packages/licensing"]
 	path = packages/licensing
-	url = https://gitlab.com/tgtmedialtd/smartcloud/licensing.git
+	url = git@gitlab.com:tgtmedialtd/smartcloud/licensing.git
 [submodule "packages/interface"]
 	path = packages/interface
-	url = https://gitlab.com/tgtmedialtd/smartcloud/interface.git
+	url = git@gitlab.com:tgtmedialtd/smartcloud/interface.git
 [submodule "packages/database"]
 	path = packages/database
-	url = https://gitlab.com/tgtmedialtd/smartcloud/database.git
+	url = git@gitlab.com:tgtmedialtd/smartcloud/database.git
 [submodule "packages/core"]
 	path = packages/core
-	url = https://gitlab.com/tgtmedialtd/smartcloud/core.git
+	url = git@gitlab.com:tgtmedialtd/smartcloud/core.git
 [submodule "packages/command-line-interface"]
 	path = packages/command-line-interface
-	url = https://gitlab.com/tgtmedialtd/smartcloud/command-line-interface.git
+	url = git@gitlab.com:tgtmedialtd/smartcloud/command-line-interface.git
