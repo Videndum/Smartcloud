@@ -22,7 +22,7 @@
   "main": "/packages/server/lib/index.js",
   "bin": "bin/index.js",
   "scripts": {
-    "install": "npm install pm2 lerna git-submodule-tool -g && lerna link && lerna bootstrap && gst fetch && gst pull && tsc -p packages/command-line-interface && cd packages/command-line-interface && npm install -g",
+    "install": "npm install pm2 lerna git-submodule-tool -g && git submodule update --init && gst fetch && gst pull && lerna link && lerna bootstrap && tsc -p packages/command-line-interface && cd packages/command-line-interface && npm install -g",
     "dev": "pm2 start ecosystem.config.js --watch --no-daemon",
     "inspect": "node --inspect-brk ./packages/server/lib/index.js",
     "build": "smartcloud",
