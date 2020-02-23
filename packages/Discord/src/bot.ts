@@ -13,6 +13,7 @@ export const root:any = {
   discord: Discord,
   classes: require('./classes/all'),
   actions: new Discord.Collection(),
+  prompts: new Map(),
   globalArgs: new Map(),
   serverArgs: new Map(),
   log: (data: string | undefined, level: number | undefined) => {try {core.log(data,level)} catch { console.log(data)}},
