@@ -125,11 +125,11 @@ export class Modules {
 
   async initializeCommand(filePath: any, file: any, group?:any) {
     if (!group) group = "unknown"
-    if (file.indexOf("_") !== -1) return;
+    if (file.indexOf("_") == 0) return;
     if (file.endsWith(".js") || file.endsWith(".json")) {
       this.singleCommand(filePath, file, group)
     } else {
-      const command: any[] = [];
+      const command: any[] = []
       command["module"] = group
       await this.multicommand(filePath, file, command, group).then((command)=>{
         console.log("the command is ", command)
@@ -141,6 +141,7 @@ export class Modules {
     return new Promise((resolve) => {
       fs.readdir(`${filePath}/${cmds}`, async (err, subcmds) => {
         if (err) {return root.log(err, 4)}
+        command["subCommands"] = new root.discord.Collection();
         subcmds.forEach(async (cmd) => {
           if (cmd.endsWith(".js") || cmd.endsWith(".json")) {
             const subCommand = require(`${filePath}/${cmds}/${cmd}`);
@@ -155,31 +156,19 @@ export class Modules {
               } else {
                 subCommand["java"] = false
               }
-              if (command.subcommands) {
-                command.subcommands[`${commandName}`] = subCommand
-              } else {
-                command[`${commandName}`] = subCommand
-              }
+              command.subCommands.set(commandName, subCommand)
+              console.log(command)
             }).catch((err) => {
               root.log(`FAILED to load version ${commandVersion} of ${group} module command "${commandName} with the following error: ${err}" (${filePath}/${cmds}/${cmd}) `, 4);
             })
           }
           else {
-            if (cmd.indexOf(".") !== -1) return;
-            let newCommand:any
-            if (command.subcommands) {
-              command.subcommands[`${cmds}`] = []
-              newCommand = command.subcommands[`${cmds}`]
-            } else {
-              command[`${cmds}`] = []
-              newCommand = command[`${cmds}`]
-            }
-            newCommand["name"] = cmds
-            newCommand["path"] = `${filePath}/${cmds}`
-            if (!newCommand.subcommands) newCommand["subcommands"] = [];
-            await this.multicommand(`${filePath}/${cmds}`, cmd, newCommand, group).then((subcommand)=>{
-              console.log("the subcommands is ", subcommand)
-              // command[`${cmds}`]["subcommands"] = subcommand
+            if (cmd.indexOf(".") !== -1 || cmd.indexOf("_") == 0) return;
+            console.log(cmd)
+            const newCommand: any[] = []
+            newCommand["name"] = cmd
+            await this.multicommand(`${filePath}/${cmds}`, cmd, newCommand, group).then((newCommand)=>{
+              console.log(newCommand)
             })
           }
         })
