@@ -131,13 +131,16 @@ export class Modules {
     } else {
       const command: any[] = []
       command["module"] = group
-      await this.multicommand(filePath, file, command, group).then((command)=>{
+      command["type"] = "container"
+      command["levels"] = 1
+      await this.multicommand(filePath, file, command, command, group).then((command)=>{
         console.log("the command is ", command)
       })
+      root.commands.set(file, command)
     }
   }
 
-  async multicommand (filePath: any, cmds: any, command:any, group?:any) {
+  async multicommand (filePath: any, cmds: any, command:any, masterCommand:any, group?:any) {
     return new Promise((resolve) => {
       fs.readdir(`${filePath}/${cmds}`, async (err, subcmds) => {
         if (err) {return root.log(err, 4)}
@@ -156,6 +159,7 @@ export class Modules {
               } else {
                 subCommand["java"] = false
               }
+              subCommand["type"] = "command"
               command.subCommands.set(commandName, subCommand)
               console.log(command)
             }).catch((err) => {
@@ -167,9 +171,13 @@ export class Modules {
             console.log(cmd)
             const newCommand: any[] = []
             newCommand["name"] = cmd
-            await this.multicommand(`${filePath}/${cmds}`, cmd, newCommand, group).then((newCommand)=>{
-              console.log(newCommand)
+            newCommand["type"] = "container"
+            masterCommand.levels++
+            const newCommandName = cmd
+            await this.multicommand(`${filePath}/${cmds}`, cmd, newCommand, masterCommand, group).then((command)=>{
+              console.log(command)
             })
+            command.subCommands.set(newCommandName, newCommand)
           }
         })
         console.log(command)
@@ -186,6 +194,7 @@ export class Modules {
     fs.ensureFile(`${filePath}/${file}`)
     .then(() => {
       command["module"] = group
+      command["type"] = "command"
       root.log(`Attempting to load version ${commandVersion} of ${group} module command "${commandName}" (${filePath}/${file}) `, 2);
       if(file.endsWith(".js")){
         command["java"] = true

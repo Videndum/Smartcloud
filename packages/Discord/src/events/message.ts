@@ -42,7 +42,8 @@ async function runCommands(message:any, root:any, prefix?:any, regex?:boolean) {
     command = args[1]
     args = args.slice(2)
   }
-  const cmd = root.commands.get(command) || root.commands.find((cmd:any) => cmd.alias && cmd.alias.includes(command));
+  let cmd = await getCommand(root, args, command);
+  console.log(cmd)
   if(!cmd) {
     root.events.emit("commandunknown", message)
     if (message.guild !== null) {
@@ -94,4 +95,21 @@ async function runCommands(message:any, root:any, prefix?:any, regex?:boolean) {
       root.events.emit((err.err || "commanderror"), (err.action || command), "Json Action exited with error: " + (err.data || err))
     })
   }
+}
+
+async function getCommand (root:any, args:any, command:any){
+  let cmd = root.commands.get(command) || root.commands.find((cmd:any) => cmd.alias && cmd.alias.includes(command));
+  if (cmd.type == "container") {
+    return await getSubCommand(cmd, args, 0)
+  }
+  return cmd
+}
+
+async function getSubCommand (cmd:any, args:any, argsNo:number) {
+  let newCommand = cmd.subCommands.get(args[argsNo]) || cmd.subCommands.find((cmd:any) => cmd.alias && cmd.alias.includes(args[argsNo]))
+  if (newCommand.type == "container") {
+    argsNo++
+    return await getSubCommand(newCommand, args, argsNo)
+  }
+  return newCommand
 }
