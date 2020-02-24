@@ -42,9 +42,12 @@ async function runCommands(message:any, root:any, prefix?:any, regex?:boolean) {
     command = args[1]
     args = args.slice(2)
   }
+  console.log(await getCommand(root, args, command))
   let cmd = await getCommand(root, args, command);
+  console.log(cmd)
   if(!cmd) {
     root.events.emit("commandunknown", message)
+    root.prompts.get("default").get("commands").doesntExist(message)
     if (message.guild !== null) {
       root.log(`Command '${prefix}${command}' was called by ${message.author.username} in ${message.guild} (${message.guild.id}) but did not exist`, 3);
     } else {
@@ -62,20 +65,16 @@ async function runCommands(message:any, root:any, prefix?:any, regex?:boolean) {
 	const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
   	if (now < expirationTime) {
   		const timeLeft = (expirationTime - now) / 1000;
-  		return message.reply(`please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${cmd.name}\` command.`);
+  		return root.prompts.get("default").get("commands").cooldown(message, timeLeft, cmd)
   	}
   }
   timestamps.set(message.author.id, now);
   setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
   if (cmd.guildOnly && message.channel.type !== 'text') {
-  	return message.reply('I can\'t execute that command inside DMs!');
+  	return root.prompts.get("default").get("commands").dms(message)
   }
-  if (cmd.args && cmd.minargs > args.length) {
-		let reply = `You didn't provide any arguments, ${message.author}!`;
-		if (cmd.usage) {
-			reply += `\nThe proper usage would be: \`${prefix}${cmd.name} ${cmd.usage}\``;
-		}
-		return message.channel.send(reply);
+  if (cmd.args && cmd.minargs > args.length || cmd.levels > args.length) {
+    return root.prompts.get("default").get("commands").args(message, prefix, cmd)
 	}
   root.events.emit("commandstarted", command)
   const javacmd = cmd.java;
@@ -98,9 +97,11 @@ async function runCommands(message:any, root:any, prefix?:any, regex?:boolean) {
 
 async function getCommand (root:any, args:any, command:any){
   let cmd = root.commands.get(command) || root.commands.find((cmd:any) => cmd.alias && cmd.alias.includes(command));
-  if (cmd.type == "container") {
-    return await getSubCommand(cmd, args, 0)
-  }
+  try {
+    if (cmd.type == "container") {
+      return await getSubCommand(cmd, args, 0)
+    }
+  } catch {}
   return cmd
 }
 
