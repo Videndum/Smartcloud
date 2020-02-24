@@ -43,7 +43,6 @@ async function runCommands(message:any, root:any, prefix?:any, regex?:boolean) {
     args = args.slice(2)
   }
   let cmd = await getCommand(root, args, command);
-  console.log(cmd)
   if(!cmd) {
     root.events.emit("commandunknown", message)
     if (message.guild !== null) {

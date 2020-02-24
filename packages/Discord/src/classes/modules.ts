@@ -20,6 +20,7 @@ export class Modules {
               this.actionLoadSubModules(group)
               this.eventLoadSubModules(group)
               this.commandLoadSubModules(group)
+              this.promptsLoadSubModules(group)
           })
       })
   }
@@ -78,6 +79,56 @@ export class Modules {
       root.log(`Attempting to load Event "${eventName}" of ${group} module (.modules/${group}/events/${file})`, 2);
   }
 
+  promptsLoadSubModules(group:any) {
+      try {
+        fs.readdir(`${modulesDirectory}/${group}/prompts/`, (err, folders) => {
+            if (err) {return root.log(err, 4)}
+            root.log(`${group} Events folders are: ${folders}`, 1)
+            folders.forEach(file => {
+                this.Initializeprompts(group, file)
+            })
+        })
+      } catch (err) {root.log(err, 4)}
+      this.globalPrompts()
+  }
+
+  Initializeprompts(group: any, file: any) {
+      if (!file.endsWith(".js")) return;
+      const prompt = require(`${modulesDirectory}/${group}/prompts/${file}`);
+      prompt["path"] = `${modulesDirectory}/${group}/prompts/${file}`
+      const promptName = file.split(".")[0];
+      if (root.prompts.get(group)) {
+        const prompts = root.prompts.get(group)
+        prompts.set(promptName, prompt)
+      } else {
+        const prompts = new Map();
+        prompts.set(promptName, prompt)
+        root.prompts.set(group, prompts)
+      }
+      root.log(`Attempting to load prompt "${promptName}" of ${group} module (.modules/${group}/prompts/${file})`, 2);
+  }
+
+  globalPrompts() {
+    fs.readdir(`${globalDirectory}/../prompts/`, (err: any, files: string[]) => {
+      if (err) {return root.log(err, 4)}
+      files.forEach((file: string) => {
+        if (!file.endsWith(".js")) return;
+        const prompt = require(`${globalDirectory}/../prompts/${file}`);
+        prompt["path"] = `${globalDirectory}/../prompts/${file}`
+        const promptName = file.split(".")[0];
+        if (root.prompts.get("global")) {
+          const prompts = root.prompts.get("global")
+          prompts.set(promptName, prompt)
+        } else {
+          const prompts = new Map();
+          prompts.set(promptName, prompt)
+          root.prompts.set("global", prompts)
+        }
+        root.log(`Attempting to load prompt "${promptName}" of global module`, 2);
+      })
+    })
+  }
+
   globalEvents() {
     fs.readdir(`${globalDirectory}/../events`, (err: any, files: string[]) => {
       if (err) {return root.log(err, 4)}
@@ -134,7 +185,6 @@ export class Modules {
       command["type"] = "container"
       command["levels"] = 1
       await this.multicommand(filePath, file, command, command, group).then((command)=>{
-        console.log("the command is ", command)
       })
       root.commands.set(file, command)
     }
@@ -161,7 +211,6 @@ export class Modules {
               }
               subCommand["type"] = "command"
               command.subCommands.set(commandName, subCommand)
-              console.log(command)
             }).catch((err) => {
               root.log(`FAILED to load version ${commandVersion} of ${group} module command "${commandName} with the following error: ${err}" (${filePath}/${cmds}/${cmd}) `, 4);
             })
@@ -180,7 +229,6 @@ export class Modules {
             command.subCommands.set(newCommandName, newCommand)
           }
         })
-        console.log(command)
         resolve(command)
       })
     })
