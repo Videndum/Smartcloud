@@ -3,7 +3,7 @@ module.exports = {
     {
         name: 'Smartcloud Server',
         script: 'lib/index.js',
-        cwd: "packages/server/",
+        cwd: "packages/application/server/",
         instances: 1,
         autorestart: true,
         max_memory_restart: '1G',
