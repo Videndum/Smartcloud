@@ -17,10 +17,10 @@ export class Modules {
           groups.forEach((group:any) => {
             if (group.endsWith(".js") || group.endsWith(".js.map") || group.endsWith(".json") || group.endsWith(".ts")) return;
               // Where directory is the module directory.
+              this.promptsLoadSubModules(group)
               this.actionLoadSubModules(group)
               this.eventLoadSubModules(group)
               this.commandLoadSubModules(group)
-              this.promptsLoadSubModules(group)
           })
       })
   }
@@ -116,13 +116,13 @@ export class Modules {
         const prompt = require(`${globalDirectory}/../prompts/${file}`);
         prompt["path"] = `${globalDirectory}/../prompts/${file}`
         const promptName = file.split(".")[0];
-        if (root.prompts.get("global")) {
-          const prompts = root.prompts.get("global")
+        if (root.prompts.get("Global")) {
+          const prompts = root.prompts.get("Global")
           prompts.set(promptName, prompt)
         } else {
           const prompts = new Map();
           prompts.set(promptName, prompt)
-          root.prompts.set("global", prompts)
+          root.prompts.set("Global", prompts)
         }
         root.log(`Attempting to load prompt "${promptName}" of global module`, 2);
       })
@@ -184,6 +184,7 @@ export class Modules {
       command["module"] = group
       command["type"] = "container"
       command["levels"] = 1
+      command["prompts"] = root.prompts.get(group).get(file)
       await this.multicommand(filePath, file, command, command, group).then((command)=>{
       })
       root.commands.set(file, command)
@@ -210,6 +211,7 @@ export class Modules {
                 subCommand["java"] = false
               }
               subCommand["type"] = "command"
+              subCommand["prompts"] = command.prompts[subCommand.name]
               command.subCommands.set(commandName, subCommand)
             }).catch((err) => {
               root.log(`FAILED to load version ${commandVersion} of ${group} module command "${commandName} with the following error: ${err}" (${filePath}/${cmds}/${cmd}) `, 4);
@@ -217,14 +219,14 @@ export class Modules {
           }
           else {
             if (cmd.indexOf(".") !== -1 || cmd.indexOf("_") == 0) return;
-            console.log(cmd)
             const newCommand: any[] = []
             newCommand["name"] = cmd
             newCommand["type"] = "container"
+            newCommand["prompts"] = command.prompts[cmd]
             masterCommand.levels++
             const newCommandName = cmd
             await this.multicommand(`${filePath}/${cmds}`, cmd, newCommand, masterCommand, group).then((command)=>{
-              console.log(command)
+              // console.log(command)
             })
             command.subCommands.set(newCommandName, newCommand)
           }

@@ -42,9 +42,7 @@ async function runCommands(message:any, root:any, prefix?:any, regex?:boolean) {
     command = args[1]
     args = args.slice(2)
   }
-  console.log(await getCommand(root, args, command))
   let cmd = await getCommand(root, args, command);
-  console.log(cmd)
   if(!cmd) {
     root.events.emit("commandunknown", message)
     root.prompts.get("default").get("commands").doesntExist(message)
@@ -74,7 +72,9 @@ async function runCommands(message:any, root:any, prefix?:any, regex?:boolean) {
   	return root.prompts.get("default").get("commands").dms(message)
   }
   if (cmd.args && cmd.minargs > args.length || cmd.levels > args.length) {
-    return root.prompts.get("default").get("commands").args(message, prefix, cmd)
+    console.log(cmd.prompts)
+    console.log(cmd)
+    return cmd.prompts.help(root, message)
 	}
   root.events.emit("commandstarted", command)
   const javacmd = cmd.java;

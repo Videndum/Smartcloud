@@ -1,7 +1,6 @@
 /**
  * @extends Discord
  */
-import * as embeds from "../../_tools/embeds";
 module.exports = {
     name: "command",
     version: "1",
@@ -21,30 +20,12 @@ module.exports = {
     execute: (root:any, message:any, args:any) => new Promise<string>((resolve, reject) => {
         root.log(`${message.author.username} Global Access: ${root.classes.user.checkUserRank(message.author.id)}`, 3);
         if (!root.classes.user.checkUserRank(message.author.id)) {
-            embeds.admin.accessFailed(message, root);
+            root.prompts.get("Global").get("admin").accessFailed(root, message);
             reject({err:"accessfailed", data: "User Rank was not sufficient"});
         }
         else {
-          if (!args[0]) embeds.admin.help(message, root);
-          switch (args[0]){
-            case "reload":
-              if (!args[1]) embeds.admin.noreload(message, root);
-              switch (args[1]){
-                case "command" || "commands":
-                  const cmd = root.commands[args[2]];
-                  console.log("reloading command ", cmd)
-                break;
-                case "action" || "actions":
-                  const action = root.actions[args[2]];
-                  console.log("reloading command ", action)
-                break;
-                case "event" || "events":
-                  // const event = root.eventlist[args[2]];
-                  // console.log("reloading command ", event)
-                break;
-              }
-              break;
-          }
+          console.log(args)
+          if (!args[2]) root.prompts.get("Global").get("admin").reload.command.help(root, message);
           resolve();
         }
     }),
