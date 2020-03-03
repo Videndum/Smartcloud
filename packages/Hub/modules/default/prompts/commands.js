@@ -12,10 +12,10 @@ function dms(message) {
     message.reply('I can\'t execute that command inside DMs!');
 }
 exports.dms = dms;
-function args(message, prefix, cmd) {
-    let reply = `You didn't provide any arguments, ${message.author}!`;
+function args(message, cmd) {
+    let reply = `You didn't provide enough arguments, ${message.author}!`;
     if (cmd.usage) {
-        reply += `\nThe proper usage would be: \`${prefix}${cmd.name} ${cmd.usage}\``;
+        reply += `\nThe proper usage would be: ${cmd.name} ${cmd.usage}`;
     }
     message.channel.send(reply);
 }

@@ -7,10 +7,10 @@ export function cooldown (message:any, timeLeft:any, cmd:any) {
 export function dms (message:any) {
   message.reply('I can\'t execute that command inside DMs!');
 }
-export function args (message:any, prefix:any, cmd:any) {
-  let reply = `You didn't provide any arguments, ${message.author}!`;
+export function args (message:any, cmd:any) {
+  let reply = `You didn't provide enough arguments, ${message.author}!`;
   if (cmd.usage) {
-    reply += `\nThe proper usage would be: \`${prefix}${cmd.name} ${cmd.usage}\``;
+    reply += `\nThe proper usage would be: ${cmd.name} ${cmd.usage}`;
   }
   message.channel.send(reply);
 }
