@@ -25,3 +25,6 @@
 [submodule "packages/command-line-interface"]
 	path = packages/ui/command-line-interface
 	url = git@gitlab.com:tgtmedialtd/smartcloud/interfaces/command-line-interface.git
+[submodule "packages/central/global"]
+	path = packages/central/global
+	url = git@gitlab.com:tgtmedialtd/smartcloud/central/global.git
