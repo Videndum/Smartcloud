@@ -14,7 +14,7 @@
 	path = packages/extensions/licensing
 	url = git@gitlab.com:tgtmedialtd/smartcloud/extensions/licensing.git
 [submodule "packages/interface"]
-	path = packages/ui/interface
+	path = packages/UI/interface
 	url = git@gitlab.com:tgtmedialtd/smartcloud/interfaces/interface.git
 [submodule "packages/database"]
 	path = packages/application/database
@@ -23,7 +23,7 @@
 	path = packages/application/core
 	url = git@gitlab.com:tgtmedialtd/smartcloud/application/core.git
 [submodule "packages/command-line-interface"]
-	path = packages/ui/command-line-interface
+	path = packages/UI/command-line-interface
 	url = git@gitlab.com:tgtmedialtd/smartcloud/interfaces/command-line-interface.git
 [submodule "packages/central/global"]
 	path = packages/central/global
