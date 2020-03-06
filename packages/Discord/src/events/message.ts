@@ -42,67 +42,70 @@ async function runCommands(message:any, root:any, prefix?:any, regex?:boolean) {
     command = args[1]
     args = args.slice(2)
   }
-  let cmd = await getCommand(root, args, command);
-  if(!cmd) {
-    root.events.emit("commandunknown", message)
-    root.prompts.get("default").get("commands").doesntExist(message)
-    if (message.guild !== null) {
-      root.log(`Command '${prefix}${command}' was called by ${message.author.username} in ${message.guild} (${message.guild.id}) but did not exist`, 3);
-    } else {
-      root.log(`Command '${prefix}${command}' was called by ${message.author.username} but did not exist`, 3);
+  await getCommand(root, args, command).then((cmd)=>{
+    console.log("this works", cmd)
+    if(!cmd) {
+      root.events.emit("commandunknown", message)
+      root.prompts.get("default").get("commands").doesntExist(message)
+      if (message.guild !== null) {
+        root.log(`Command '${prefix}${command}' was called by ${message.author.username} in ${message.guild} (${message.guild.id}) but did not exist`, 3);
+      } else {
+        root.log(`Command '${prefix}${command}' was called by ${message.author.username} but did not exist`, 3);
+      }
+      return
     }
-    return
-  }
-  if (!root.cooldowns.has(cmd.name)) {
-  	root.cooldowns.set(cmd.name, new root.discord.Collection());
-  }
-  const now = Date.now();
-  const timestamps = root.cooldowns.get(cmd.name);
-  const cooldownAmount = (cmd.cooldown || 3) * 1000;
-  if (timestamps.has(message.author.id)) {
-	const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
-  	if (now < expirationTime) {
-  		const timeLeft = (expirationTime - now) / 1000;
-  		return root.prompts.get("default").get("commands").cooldown(message, timeLeft, cmd)
-  	}
-  }
-  timestamps.set(message.author.id, now);
-  setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
-  if (cmd.guildOnly && message.channel.type !== 'text') {
-  	return root.prompts.get("default").get("commands").dms(message)
-  }
-  if (cmd.args && cmd.minargs > args.length || cmd.levels > args.length) {
-    console.log(cmd.prompts)
-    console.log(cmd)
-    return cmd.prompts.help(root, message)
-	}
-  root.events.emit("commandstarted", command)
-  const javacmd = cmd.java;
-  if (javacmd == true) {
-    cmd.execute(root, message, args).then(() => {
-      root.events.emit("commandfinished", command)
-    }).catch((err:any) => {
-      root.log(`Command "${message}" exited with error: ` + (err.data || err), 3)
-      root.events.emit((err.err || "commanderror"), (err.action || command), "Json Action exited with error: " + (err.data || err))
-    })
-  } else {
-    root.classes.actions.startActions(cmd, args, {message: message}).then(() => {
-      root.events.emit("commandfinished", command)
-    }).catch((err:any) => {
-      root.log(`Command "${message}" exited with error: ` + (err.data || err), 3)
-      root.events.emit((err.err || "commanderror"), (err.action || command), "Json Action exited with error: " + (err.data || err))
-    })
-  }
+    if (!root.cooldowns.has(cmd.name)) {
+      root.cooldowns.set(cmd.name, new root.discord.Collection());
+    }
+    const now = Date.now();
+    const timestamps = root.cooldowns.get(cmd.name);
+    const cooldownAmount = (cmd.cooldown || 3) * 1000;
+    if (timestamps.has(message.author.id)) {
+      const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
+      if (now < expirationTime) {
+        const timeLeft = (expirationTime - now) / 1000;
+        return root.prompts.get("default").get("commands").cooldown(message, timeLeft, cmd)
+      }
+    }
+    timestamps.set(message.author.id, now);
+    setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
+    if (cmd.guildOnly && message.channel.type !== 'text') {
+      return root.prompts.get("default").get("commands").dms(message)
+    }
+    if (cmd.args && cmd.minargs > args.length || cmd.levels > args.length) {
+      console.log("cmd prompts", cmd.prompts)
+      return cmd.prompts.help(root, message)
+    }
+    root.events.emit("commandstarted", command)
+    const javacmd = cmd.java;
+    if (javacmd == true) {
+      cmd.execute(root, message, args).then(() => {
+        root.events.emit("commandfinished", command)
+      }).catch((err:any) => {
+        root.log(`Command "${message}" exited with error: ` + (err.data || err), 3)
+        root.events.emit((err.err || "commanderror"), (err.action || command), "Json Action exited with error: " + (err.data || err))
+      })
+    } else {
+      root.classes.actions.startActions(cmd, args, {message: message}).then(() => {
+        root.events.emit("commandfinished", command)
+      }).catch((err:any) => {
+        root.log(`Command "${message}" exited with error: ` + (err.data || err), 3)
+        root.events.emit((err.err || "commanderror"), (err.action || command), "Json Action exited with error: " + (err.data || err))
+      })
+    }
+  });
 }
 
 async function getCommand (root:any, args:any, command:any){
-  let cmd = root.commands.get(command) || root.commands.find((cmd:any) => cmd.alias && cmd.alias.includes(command));
-  try {
-    if (cmd.type == "container") {
-      return await getSubCommand(cmd, args, 0)
-    }
-  } catch {}
-  return cmd
+  return new Promise<any>(async (resolve) => {
+    let cmd = root.commands.get(command) || root.commands.find((cmd:any) => cmd.alias && cmd.alias.includes(command));
+    try {
+      if (cmd.type == "container") {
+        return await getSubCommand(cmd, args, 0)
+      }
+    } catch {}
+    resolve(cmd)
+  })
 }
 
 async function getSubCommand (cmd:any, args:any, argsNo:number) {
