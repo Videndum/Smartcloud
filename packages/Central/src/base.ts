@@ -21,6 +21,7 @@ class Core {
     dateFormat: 'YYYY.MMM.DD'
   }
   public readonly pm = require('pm2');
+  public readonly localize = require('i18next').i18next.init({lng: 'en',debug: true});
   public readonly request = require('request-promise');
   public readonly moment = require("moment");
   public readonly timer = new TaskTimer(10000);
@@ -52,6 +53,7 @@ class Core {
       options.core.extensions.initialized++
     }
   }
+
 
   /**
   * log Data
