@@ -17,7 +17,7 @@ Steps to reproduce the behavior:
 3. Scroll down to '....'
 4. See error
 
-**Expected behavior**
+**Expected behaviour**
 A clear and concise description of what you expected to happen.
 
 **Screenshots**
@@ -36,3 +36,13 @@ If applicable, add screenshots to help explain your problem.
 
 **Additional context**
 Add any other context about the problem here.
+
+**Bug Checklist**
+
+- [ ] Have reproduced on my application version
+- [ ] Have reproduced on clean installation
+- [ ] Have reproduced on development build
+- [ ] Have included logs or screenshots
+- [ ] Have contacted support via smartcloud official website
+- [ ] Have asked the community for guidance
+- [ ] Have linked any related issues
