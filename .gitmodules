@@ -4,6 +4,3 @@
 [submodule "packages/template"]
 	path = packages/templates/template
 	url = git@gitlab.com:tgtmedialtd/smartcloud/templates/template.git
-[submodule "packages/server"]
-	path = packages/application/server
-	url = git@gitlab.com:tgtmedialtd/smartcloud/application/server.git
