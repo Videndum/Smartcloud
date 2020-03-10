@@ -10,6 +10,3 @@
 [submodule "packages/licensing"]
 	path = packages/extensions/licensing
 	url = git@gitlab.com:tgtmedialtd/smartcloud/extensions/licensing.git
-[submodule "packages/interface"]
-	path = packages/UI/interface
-	url = git@gitlab.com:tgtmedialtd/smartcloud/interfaces/interface.git
