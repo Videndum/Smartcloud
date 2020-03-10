@@ -16,6 +16,3 @@
 [submodule "packages/interface"]
 	path = packages/UI/interface
 	url = git@gitlab.com:tgtmedialtd/smartcloud/interfaces/interface.git
-[submodule "packages/database"]
-	path = packages/application/database
-	url = git@gitlab.com:tgtmedialtd/smartcloud/application/database.git
