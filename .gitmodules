@@ -1,9 +1,6 @@
 [submodule "wiki"]
 	path = wiki
 	url = https://github.com/TGTMedia/smartcloud_wiki.git
-[submodule "packages/discord"]
-	path = packages/extensions/discord
-	url = git@gitlab.com:tgtmedialtd/smartcloud/extensions/discord.git
 [submodule "packages/template"]
 	path = packages/templates/template
 	url = git@gitlab.com:tgtmedialtd/smartcloud/templates/template.git
