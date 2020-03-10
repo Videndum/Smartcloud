@@ -22,6 +22,3 @@
 [submodule "packages/core"]
 	path = packages/application/core
 	url = git@gitlab.com:tgtmedialtd/smartcloud/application/core.git
-[submodule "packages/command-line-interface"]
-	path = packages/UI/command-line-interface
-	url = git@gitlab.com:tgtmedialtd/smartcloud/interfaces/command-line-interface.git
