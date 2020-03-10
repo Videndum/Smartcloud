@@ -7,6 +7,3 @@
 [submodule "packages/server"]
 	path = packages/application/server
 	url = git@gitlab.com:tgtmedialtd/smartcloud/application/server.git
-[submodule "packages/licensing"]
-	path = packages/extensions/licensing
-	url = git@gitlab.com:tgtmedialtd/smartcloud/extensions/licensing.git
