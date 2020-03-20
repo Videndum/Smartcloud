@@ -1,0 +1,26 @@
+name-template: 'v$NEXT_PATCH_VERSION 🌈'
+tag-template: 'v$NEXT_PATCH_VERSION'
+categories:
+  - title: '🚀 Features'
+    labels:
+      - 'Type: Feature'
+      - 'Type: Enhancement'
+  - title: '🐛 Bug Fixes'
+    labels:
+      - 'Bug: Fixed'
+      - 'Type: Fix'
+  - title: '🧰 Maintenance'
+    labels:
+      - 'Type: Chore'
+      - 'Type: Docs'
+      - 'Type: Style'
+      - 'Type: Refactor'
+      - 'Type: Optimisation'
+  - title: '💀 Reverts'
+    labels:
+      - 'Type: Revert'
+change-template: '- $TITLE #$NUMBER (@$AUTHOR)'
+template: |
+  ## Changes
+
+  $CHANGES

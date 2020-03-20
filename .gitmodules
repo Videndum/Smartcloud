@@ -1,0 +1,15 @@
+[submodule "packages/ux"]
+	path = packages/ux
+	url = https://github.com/Smartcloudgg/UX.git
+[submodule "packages/discord"]
+	path = packages/discord
+	url = https://github.com/Smartcloudgg/Discord
+[submodule "packages/central"]
+	path = packages/central
+	url = https://github.com/Smartcloudgg/Central
+[submodule "packages/hub"]
+	path = packages/hub
+	url = https://github.com/Smartcloudgg/Hub
+[submodule "packages/cli"]
+	path = packages/cli
+	url = https://github.com/Smartcloudgg/CLI

@@ -1,9 +1,46 @@
-Project name1:
-  Column name1:
-    - 'Status: test1'
-  Column name2:
-    - 'Status: test2-1'
-    - 'Status: test2-2'
-Project name2:
-  Column name3:
-    - 'Status: test1'
+DevOps:
+  Requested:
+    - "Status: Available"
+  Accepted:
+    - 'DevOps: Accepted'
+    - 'Status: To Do'
+  In progress:
+    - 'DevOps: Developing'
+    - 'Status: In Progress'
+  Testing:
+    - 'DevOps: Testing'
+    - 'Status: In Progress'
+  Reviewing:
+    - 'DevOps: Reviewing'
+    - 'Status: In Review'
+  Staging:
+    - 'DevOps: Staging'
+    - 'Status: Staging'
+  Deploying:
+    - 'DevOps: Deploying'
+    - 'Status: Deploying'
+  Completed:
+    - 'DevOps: Completed'
+    - 'Status: Completed'
+  Rejected:
+    - 'DevOps: Rejected'
+    - 'Status: Wontfix'
+Issue Status:
+  New:
+    - 'Bug: New'
+    - 'Type: Bug'
+  Closed:
+    - 'Bug: Fixed'
+    - 'Type: Bug'
+  High priority:
+    - 'Bug: Confirmed'
+    - 'Type: Bug'
+    - 'Priority: High'
+  Medium priority:
+    - 'Bug: Confirmed'
+    - 'Type: Bug'
+    - 'Priority: Medium'
+  Low priority:
+    - 'Bug: Confirmed'
+    - 'Type: Bug'
+    - 'Priority: Low'
