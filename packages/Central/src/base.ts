@@ -21,7 +21,7 @@ class Core {
     dateFormat: 'YYYY.MMM.DD'
   }
   public readonly pm = require('pm2');
-  public readonly localize = require('i18next').i18next.init({lng: 'en',debug: true});
+  // public readonly localize = require('i18next').i18next.init({lng: 'en',debug: true});
   public readonly request = require('request-promise');
   public readonly moment = require("moment");
   public readonly timer = new TaskTimer(10000);
@@ -120,29 +120,6 @@ class Core {
     }
   }
 
-}
-
-class Api {
-  core:any
-  public api: express.Application;
-  public routePrv: Routes = new Routes();
-  constructor() {
-    core["apiPool"] = new StaticPool({
-      size: 20,
-      task: `${__dirname}/worker.js`,
-    });
-    this.api = express();
-    this.config();
-    this.routePrv.routes(this.api,core);
-  }
-  private config(): void{
-    try {
-      this.api.use(Sentry.Handlers.requestHandler());
-      this.api.use(Sentry.Handlers.errorHandler());
-    } catch {}
-    this.api.use(bodyParser.json());
-    this.api.use(bodyParser.urlencoded({ extended: true }));
-  }
 }
 
 export const core = new Core
