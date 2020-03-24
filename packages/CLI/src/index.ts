@@ -89,7 +89,7 @@ vorpal
     // this.log(args)
     const config:any = []
     const self = this;
-    if (!args.apts) return await question(self, config)
+    if (!args.apts) return question(self, config)
     return
   })
 
@@ -164,10 +164,10 @@ async function account (config:any) {
   }
   if (config.signup == false && config.account == false) {
     // Check user is sure they want to continue without an account
-    return await inquirer.prompt(questions[start+5]).then(async(answers:any) => {
+    return inquirer.prompt(questions[start+5]).then(async(answers:any) => {
       config[questions[start+5].name] = answers[questions[start+5].name]
       if (answers[questions[start+5].name] == false) {
-        return await account(config)
+        return account(config)
       }
       return
     });
@@ -219,7 +219,7 @@ vorpal
     const args = input.split(/ +/g)
     const command = args.shift();
     if (command == "docs") {
-      return await buildDocs()
+      return buildDocs()
       .catch((err:any)=>vorpal.log(err))
     }
     return
