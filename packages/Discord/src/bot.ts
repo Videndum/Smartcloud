@@ -2,6 +2,7 @@
  * @module Discord
  */
 import EventEmitter from 'events'
+//@ts-ignore
 const event = new EventEmitter()
 export const events = event
 let core:any
@@ -20,8 +21,6 @@ export const root:any = {
   core: core,
   events: events
 }
-
-try { core = require('@smartcloudai/core').core } catch (_) {}
 /**
  * Load discord functions
  * @param  core SCAA Core Actions
