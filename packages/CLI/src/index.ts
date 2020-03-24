@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 const vorpal = require('vorpal')();
 const jsdoc2md = require('jsdoc-to-markdown')
-import fs from 'fs-extra';
-import simplegit from 'simple-git/promise';
-const git = simplegit();
+const fs = require('fs-extra').fs;
+// import simplegit from 'simple-git/promise';
+// const git = simplegit();
 const cmdify = require('cmdify');
 const inquirer = require('inquirer');
 const fuzzy = require('fuzzy');
@@ -88,12 +88,12 @@ vorpal
   .action(async function(args:any) {
     // this.log(args)
     const config:any = []
-    const self = this;
+    // const self = this;
     if (!args.apts) return question(self, config)
     return
   })
 
-var bottomBar = null
+var bottomBar:any | null
 var completed = false
 var loader = ['/ Installing', '| Installing', '\\ Installing', '- Installing'];
 var x = 4;
@@ -164,7 +164,7 @@ async function account (config:any) {
   }
   if (config.signup == false && config.account == false) {
     // Check user is sure they want to continue without an account
-    return inquirer.prompt(questions[start+5]).then(async(answers:any) => {
+    return await inquirer.prompt(questions[start+5]).then(async(answers:any) => {
       config[questions[start+5].name] = answers[questions[start+5].name]
       if (answers[questions[start+5].name] == false) {
         return account(config)
@@ -198,8 +198,8 @@ async function account (config:any) {
  */
 
 
-let results:any
-let bumpargs=""
+// let results:any
+// let bumpargs=""
 vorpal
   .mode('dev')
   .delimiter('dev:')
@@ -215,7 +215,7 @@ vorpal
     callback();
   })
   .action(async function(input:any) {
-    const self = this;
+    // const self = this;
     const args = input.split(/ +/g)
     const command = args.shift();
     if (command == "docs") {
