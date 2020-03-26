@@ -7,7 +7,7 @@ module.exports = {
   * @private
   */
   help (root:any, message:any) {
-    const embed = new root.discord.RichEmbed()
+    const embed = new root.discord.MessageEmbed()
     .setTitle(`**_Command help_**`)
     .setDescription("The `!admin` command requires a sub command")
     .addField("!admin help", "This command will bring up this information guide.")
@@ -24,14 +24,14 @@ module.exports = {
   * @private
   */
   accessFailed (root:any, message:any) {
-    const embed = new root.discord.RichEmbed()
+    const embed = new root.discord.MessageEmbed()
     .setTitle(`**_Access Denied_**`)
     .setDescription("The `!admin` command is for bot staff only. Users should consult our support team if you need to run this command")
     .addField("Support Team Information", "You can contact our support team using the following discord server \n https://discord.gg/P5DwgzN \n\n or by using our help command \n```!help supportchat```")
     .setColor(13632027)
     .setFooter("SCAA Command Help | smartcloud.gg | Discord Module", "http://assets.smartcloud.gg/logos/1x/icon_shadow.png");
     message.reply(embed);
-  }, 
+  },
   reload: {
     /**
     * Reload Help (Command || Action || Event)
@@ -41,7 +41,7 @@ module.exports = {
     * @private
     */
     help: (root:any, message:any) => {
-      const embed = new root.discord.RichEmbed()
+      const embed = new root.discord.MessageEmbed()
           .setTitle(`**_Command help_**`)
           .setDescription("The `!admin reload` command requires a sub command")
           .setColor(13632027)
@@ -50,7 +50,7 @@ module.exports = {
     },
     command: {
       help: (root:any, message:any) => {
-        const embed = new root.discord.RichEmbed()
+        const embed = new root.discord.MessageEmbed()
             .setTitle(`**_Command help_**`)
             .setDescription("The `!admin reload command` requires a command to reload")
             .setColor(13632027)

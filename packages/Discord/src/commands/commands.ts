@@ -18,7 +18,7 @@ module.exports = {
     minargs: 0,
     helpInformation: "Simply simply do `commands` to get the full list of commands",
     execute: (root:any, message:any, args:any) => new Promise<string>((resolve, reject) => {
-        const embed = new root.discord.RichEmbed()
+        const embed = new root.discord.MessageEmbed()
             .setTitle(`**_Command list_**`)
             .setDescription("You can use `!commands {command}` to view detailed information about each command. \n\n For non command related support please use `!help`")
             .setColor(13632027)
@@ -31,9 +31,16 @@ module.exports = {
               }
               else {
                   root.log(`${cmd} added to !commands`, 1);
-                  commandOutput = commandOutput.concat(cmd);
-                  commandOutput = commandOutput.concat(data.alias);
-                  embed.addField(`!${cmd}`, data.description);
+                  let field = "Description: ";
+                  let name = `!${cmd} `;
+                  if (data.alias)
+                      name += `(Alias: ${data.alias})`;
+                  if (data.description) {
+                    field += `${data.description} \n`;
+                  } else {
+                    field += `Undefined`
+                  }
+                  embed.addField(name, field);
               }
             })
             message.reply(embed);

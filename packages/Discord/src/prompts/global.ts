@@ -11,7 +11,7 @@ module.exports = {
    * @private
    */
   help (message:any, root:any) {
-    const embed = new root.discord.RichEmbed()
+    const embed = new root.discord.MessageEmbed()
         .setTitle(`**_Command help_**`)
         .setDescription("The `!global` command requires a sub command")
         .addField("!global help", "This command will bring up this information guide.")
@@ -31,7 +31,7 @@ module.exports = {
    * @private
    */
   accessFailed (message:any, root:any) {
-    const embed = new root.discord.RichEmbed()
+    const embed = new root.discord.MessageEmbed()
         .setTitle(`**_Access Denied_**`)
         .setDescription("The `!global` command is for bot global staff only. Server staff should consult our support team if you need to run this command")
         .addField("Support Team Information", "You can contact our support team using the following discord server \n https://discord.gg/P5DwgzN \n\n or by using our help command \n```!help supportchat```")

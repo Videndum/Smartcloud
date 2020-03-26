@@ -14,11 +14,11 @@ module.exports = (root:any, message:any) => {
     runCommands(message, root, prefix)
     commandFound = true
   })
-  if (commandFound == true) return
-  if (message.isMentioned(root.client.user)) {
-    runCommands(message, root, `${root.client.user} `)
-    commandFound = true
-  }
+  // if (commandFound == true) return
+  // if (message.isMentioned(root.client.user)) {
+  //   runCommands(message, root, `${root.client.user} `)
+  //   commandFound = true
+  // }
   if (commandFound == true) return
   root.classes.configs.getRegex().forEach((regex:any) => {
     var regexConst = new RegExp(regex, "i");

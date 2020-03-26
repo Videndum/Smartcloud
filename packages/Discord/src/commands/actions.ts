@@ -18,7 +18,7 @@ module.exports = {
     minargs: 0,
     helpInformation: "Simply simply do `actions` to get the full list of actions",
     execute: (root:any, message:any, args:any) => new Promise<string>((resolve, reject) => {
-        const embed = new root.discord.RichEmbed()
+        const embed = new root.discord.MessageEmbed()
             .setTitle(`**_action list_**`)
             .setDescription("You can use `!actions {action}` to view detailed information about each action. \n\n For non action related support please use `!help`")
             .setColor(13632027)
@@ -33,7 +33,7 @@ module.exports = {
                   root.log(`${action} added to !commands`, 1);
                   actionOutput = actionOutput.concat(action);
                   actionOutput = actionOutput.concat(data.alias);
-                  embed.addField(`!${action}`, data.description);
+                  embed.addField(`${action}`, data.description);
               }
             })
             message.reply(embed);
