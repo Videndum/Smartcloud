@@ -180,12 +180,12 @@
     tslib "^1.9.3"
 
 "@sentry/integrations@^5.10.2":
-  version "5.15.0"
-  resolved "https://registry.yarnpkg.com/@sentry/integrations/-/integrations-5.15.0.tgz#02ae2737b066aee08426cb4df22c700685505ea1"
-  integrity sha512-50OLHL26EMOCeyVlwLk9P7YocaUF02RYuCD3BPofTswgXSDe61Qy3ntT/RuOTiUV1sjmpc4FjDBJdtp/miFfOg==
+  version "5.15.5"
+  resolved "https://registry.yarnpkg.com/@sentry/integrations/-/integrations-5.15.5.tgz#7f7bc488d838cd50e9ca50d5f933680632827826"
+  integrity sha512-s9N9altnGkDH+vNNUZu1dKuMVLAgJNYtgs6DMJTrZRswFl8gzZytYTZCdpzjBgTsqkLaGbRDIjQeE/yP3gnrqw==
   dependencies:
-    "@sentry/types" "5.15.0"
-    "@sentry/utils" "5.15.0"
+    "@sentry/types" "5.15.5"
+    "@sentry/utils" "5.15.5"
     tslib "^1.9.3"
 
 "@sentry/minimal@5.15.5":
