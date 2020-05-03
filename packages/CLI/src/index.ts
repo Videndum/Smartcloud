@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const vorpal = require('vorpal')();
 const jsdoc2md = require('jsdoc-to-markdown')
-const fs = require('fs-extra').fs;
+import fs from 'fs-extra';
 // import simplegit from 'simple-git/promise';
 // const git = simplegit();
 const cmdify = require('cmdify');
