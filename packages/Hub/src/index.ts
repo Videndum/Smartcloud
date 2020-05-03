@@ -1,7 +1,7 @@
 export const core = require("@smartcloudai/core").core;
 import { Worker } from 'worker_threads';
 function log (data: string, level: number | undefined) {core.log(data,level)}
-const applications: any[] = []
+// const applications: any[] = []
 import { build } from './classes/extensions'
 import { api } from './api'
 /**
@@ -73,15 +73,15 @@ async function initialize() {
 * Events
 * @private
 */
-const loaders = {
-  core: false,
-  extensions: {
-    loaded: 0,
-    expect: 0,
-    success: false
-  },
-  api: false
-}
+// const loaders = {
+//   core: false,
+//   extensions: {
+//     loaded: 0,
+//     expect: 0,
+//     success: false
+//   },
+//   api: false
+// }
 
 function runService(service:string, workerData: any) {
   return new Promise((resolve, reject) => {

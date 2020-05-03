@@ -3,7 +3,7 @@
  * @private
  */
 
-export default async function checkApplication(requestType:any, req:any, res: Response, core:any){
+export default async function checkApplication(requestType:any, req:any, res:any, core:any){
   const errors = require('./errors')
   const message = {
     type: requestType,

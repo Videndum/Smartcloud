@@ -21,7 +21,7 @@ type MyReturnType = {
  * @return  {boolean}
  * @extends Core
  */
-import { parentPort } from 'worker_threads'
+const parentPort = require('worker_threads').parentPort
 export class Activation {
   core = require("@smartcloudai/core").core
   log:any
