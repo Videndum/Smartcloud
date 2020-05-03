@@ -109,10 +109,12 @@ async function getCommand (root:any, args:any, command:any){
 }
 
 async function getSubCommand (cmd:any, args:any, argsNo:number) {
-  let newCommand = cmd.subCommands.get(args[argsNo]) || cmd.subCommands.find((cmd:any) => cmd.alias && cmd.alias.includes(args[argsNo]))
-  if (newCommand.type == "container") {
-    argsNo++
-    return await getSubCommand(newCommand, args, argsNo)
-  }
-  return newCommand
+  return new Promise<any>(async (resolve) => {
+    let newCommand = cmd.subCommands.get(args[argsNo]) || cmd.subCommands.find((cmd:any) => cmd.alias && cmd.alias.includes(args[argsNo]))
+    if (newCommand.type == "container") {
+      argsNo++
+      resolve(await getSubCommand(newCommand, args, argsNo))
+    }
+    resolve(newCommand)
+  })
 }

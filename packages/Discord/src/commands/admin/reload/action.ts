@@ -1,7 +1,6 @@
 /**
  * @extends Discord
  */
-import * as embeds from "../../_tools/embeds";
 module.exports = {
     name: "action",
     version: "1",

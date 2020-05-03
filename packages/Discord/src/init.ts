@@ -8,7 +8,7 @@ const manager = new Discord.ShardingManager(`${__dirname}/bot.js`, { token: conf
 
 export class Init {
   constructor(){
-    manager.on('launch', (shard:any) => {
+    manager.on('shardCreate', (shard:any) => {
       log(`Launching shard ${shard.id}`, 2)
     });
     manager.spawn().catch((e: any) => {core.log(e, 4)});

@@ -180,7 +180,7 @@ export class Modules {
     if (file.endsWith(".js") || file.endsWith(".json")) {
       this.singleCommand(filePath, file, group)
     } else {
-      const command: any[] = []
+      const command: { [key: string]: any } = {}
       command["module"] = group
       command["type"] = "container"
       command["levels"] = 1
@@ -219,7 +219,7 @@ export class Modules {
           }
           else {
             if (cmd.indexOf(".") !== -1 || cmd.indexOf("_") == 0) return;
-            const newCommand: any[] = []
+            const newCommand: { [key: string]: any } = {}
             newCommand["name"] = cmd
             newCommand["type"] = "container"
             newCommand["prompts"] = command.prompts[cmd]
