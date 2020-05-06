@@ -1,7 +1,7 @@
 /**
  * @extends Discord
  */
-module.exports = (root:any, message:any) => {
+module.exports = (root: any, message: any) => {
   let commandFound
   if (message.author.bot) return;
   if (message.guild !== null) {
@@ -9,7 +9,7 @@ module.exports = (root:any, message:any) => {
   } else {
     root.log(`Message "${message.content}" from ${message.author.username} in PM`, 1)
   }
-  root.classes.configs.getPrefixes().forEach((prefix:any) => {
+  root.classes.configs.getPrefixes().forEach((prefix: any) => {
     if (message.content.indexOf(prefix) !== 0) return;
     runCommands(message, root, prefix)
     commandFound = true
@@ -20,17 +20,17 @@ module.exports = (root:any, message:any) => {
   //   commandFound = true
   // }
   if (commandFound == true) return
-  root.classes.configs.getRegex().forEach((regex:any) => {
+  root.classes.configs.getRegex().forEach((regex: any) => {
     var regexConst = new RegExp(regex, "i");
     if (regexConst.test(message.content)) {
       //@ts-ignore
-      if(regexConst.exec(message.content).index == 0) runCommands(message, root, regex, true);
+      if (regexConst.exec(message.content).index == 0) runCommands(message, root, regex, true);
     }
   })
 }
 
 
-async function runCommands(message:any, root:any, prefix?:any, regex?:boolean) {
+async function runCommands(message: any, root: any, prefix?: any, regex?: boolean | undefined) {
   let command: string
   let args: string[]
   if (regex === undefined) {
@@ -42,9 +42,9 @@ async function runCommands(message:any, root:any, prefix?:any, regex?:boolean) {
     command = args[1]
     args = args.slice(2)
   }
-  await getCommand(root, args, command).then((cmd)=>{
+  await getCommand(root, args, command).then((cmd) => {
     console.log("this works", cmd)
-    if(!cmd) {
+    if (!cmd) {
       root.events.emit("commandunknown", message)
       root.prompts.get("default").get("commands").doesntExist(message)
       if (message.guild !== null) {
@@ -81,14 +81,14 @@ async function runCommands(message:any, root:any, prefix?:any, regex?:boolean) {
     if (javacmd == true) {
       cmd.execute(root, message, args).then(() => {
         root.events.emit("commandfinished", command)
-      }).catch((err:any) => {
+      }).catch((err: any) => {
         root.log(`Command "${message}" exited with error: ` + (err.data || err), 3)
         root.events.emit((err.err || "commanderror"), (err.action || command), "Json Action exited with error: " + (err.data || err))
       })
     } else {
-      root.classes.actions.startActions(cmd, args, {message: message}).then(() => {
+      root.classes.actions.startActions(cmd, args, { message: message }).then(() => {
         root.events.emit("commandfinished", command)
-      }).catch((err:any) => {
+      }).catch((err: any) => {
         root.log(`Command "${message}" exited with error: ` + (err.data || err), 3)
         root.events.emit((err.err || "commanderror"), (err.action || command), "Json Action exited with error: " + (err.data || err))
       })
@@ -96,21 +96,21 @@ async function runCommands(message:any, root:any, prefix?:any, regex?:boolean) {
   });
 }
 
-async function getCommand (root:any, args:any, command:any){
+async function getCommand(root: any, args: any, command: any) {
   return new Promise<any>(async (resolve) => {
-    let cmd = root.commands.get(command) || root.commands.find((cmd:any) => cmd.alias && cmd.alias.includes(command));
+    let cmd = root.commands.get(command) || root.commands.find((cmd: any) => cmd.alias && cmd.alias.includes(command));
     try {
       if (cmd.type == "container") {
         return await getSubCommand(cmd, args, 0)
       }
-    } catch {}
+    } catch { }
     resolve(cmd)
   })
 }
 
-async function getSubCommand (cmd:any, args:any, argsNo:number) {
+async function getSubCommand(cmd: any, args: any, argsNo: number) {
   return new Promise<any>(async (resolve) => {
-    let newCommand = cmd.subCommands.get(args[argsNo]) || cmd.subCommands.find((cmd:any) => cmd.alias && cmd.alias.includes(args[argsNo]))
+    let newCommand = cmd.subCommands.get(args[argsNo]) || cmd.subCommands.find((cmd: any) => cmd.alias && cmd.alias.includes(args[argsNo]))
     if (newCommand.type == "container") {
       argsNo++
       resolve(await getSubCommand(newCommand, args, argsNo))

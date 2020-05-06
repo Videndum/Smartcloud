@@ -7,5 +7,5 @@ module.exports = (root:any) => {
   const shardID = root.client.shard.id + 1
   try {root.client.user.setPresence({game: {name: `smartcloud.gg | shard: ${shardID}/${root.client.shard.count} | ?help`, type: 0}, status: "Online"})}catch{root.client.user.setPresence({game: {name: `smartcloud.gg | shard: ${shardID}/${root.client.shard.count} | ?help`, type: 0}, status: "Online"})}
   root.client.user.setUsername((root.config.UniqueConfigs.botNickname || "Smartcloud"));
-  try {root.client.user.setAvatar('http://assets.smartcloud.gg/logos/1x/icon_300x300.png').catch((_: any) => {root.log(_,3)})}catch (_){root.log(_,3)}
+  try {root.client.user.setAvatar('https://assets.videndum.studio/smartcloud/logos/1x/IconSquare.png').catch((_: any) => {root.log(_,3)})}catch (_){root.log(_,3)}
 }
