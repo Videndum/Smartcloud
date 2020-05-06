@@ -1,9 +1,9 @@
 {
-  "name": "@smartcloudai/core",
+  "name": "@videndum/central",
   "version": "0.1.0-beta.2",
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/tgtmedialtd/smartcloud/core.git"
+    "url": "https://github.com/Videndum/Central.git"
   },
   "license": "GPL-3.0-or-later",
   "description": "The Smart Cloud by TGT Media Ltd, the all in one solution to social media integrations for small companies and communities",
