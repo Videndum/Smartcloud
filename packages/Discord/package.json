@@ -1,5 +1,5 @@
 {
-  "name": "@smartcloudai/discord",
+  "name": "@videndum/discord",
   "version": "0.1.0-beta.1",
   "description": "Smart Cloud Discord Module Base Code",
   "author": {
@@ -7,7 +7,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/tgtmedialtd/smartcloud/modules/discord-module"
+    "url": "https://github.com/Videndum/Discord.git"
   },
   "license": "GPL-3.0-or-later",
   "scripts": {
@@ -31,7 +31,7 @@
     "events": "^3.0.0"
   },
   "optionalDependencies": {
-    "@smartcloudai/core": "^0.1.0-beta.2"
+    "@videndum/central": "0.1.0-beta.2"
   },
   "devDependencies": {
     "@types/fs-extra": "^8.1.0",
