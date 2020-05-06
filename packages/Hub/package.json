@@ -1,9 +1,9 @@
 {
-  "name": "@smartcloudai/server",
+  "name": "@videndum/hub",
   "version": "0.1.0-beta.1",
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/tgtmedialtd/smartcloud/core.git"
+    "url": "https://github.com/Videndum/Hub.git"
   },
   "license": "GPL-3.0-or-later",
   "description": "The Smart Cloud by TGT Media Ltd, the all in one solution to social media intergrations for small companies and communities",
@@ -15,9 +15,6 @@
   },
   "author": {
     "name": "TGT Media Ltd"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
   },
   "main": "./lib/index.js",
   "directories": {
@@ -40,8 +37,8 @@
     "prod": "nodemon -r source-map-support/register --cwd ./lib/index.js"
   },
   "dependencies": {
-    "@smartcloudai/core": "^0.1.0-beta.2",
-    "@smartcloudai/discord": "^0.1.0-beta.0",
+    "@videndum/central": "0.1.0-beta.2",
+    "@videndum/discord": "^0.1.0-beta.1",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "node-worker-threads-pool": "^1.1.2",
@@ -58,7 +55,9 @@
       "logs"
     ]
   },
-  "private": true,
+  "private": false,
   "gitHead": "734e2349b4949ddb94e9c882149187608f3ee1db",
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" }
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }
