@@ -2,8 +2,6 @@
 const vorpal = require('vorpal')();
 const jsdoc2md = require('jsdoc-to-markdown')
 import fs from 'fs-extra';
-// import simplegit from 'simple-git/promise';
-// const git = simplegit();
 const cmdify = require('cmdify');
 const inquirer = require('inquirer');
 const fuzzy = require('fuzzy');
@@ -198,8 +196,6 @@ async function account(config: any) {
  */
 
 
-// let results:any
-// let bumpargs=""
 vorpal
   .mode('dev')
   .delimiter('dev:')
