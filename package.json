@@ -5,7 +5,7 @@
     "type": "git",
     "url": "https://gitlab.com/tgtmedialtd/smartcloud/core.git"
   },
-  "license": "GPLv3",
+  "license": "GPL-3.0-or-later",
   "description": "The Smart Cloud by TGT Media Ltd, the all in one solution to social media intergrations for small companies and communities",
   "keywords": "Smart Cloud, Social Media, intergrations",
   "homepage": "https://tgtmedia.co.uk/h/smart-cloud/",
