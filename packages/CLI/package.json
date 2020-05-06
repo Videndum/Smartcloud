@@ -1,6 +1,6 @@
 {
-  "name": "@smartcloudai/cli",
-  "version": "1.2.0-beta.0",
+  "name": "@videndum/cli",
+  "version": "1.2.0-beta.1",
   "description": "Command Line Interface for smartcloud",
   "author": "Jonathan Stevens <jonathan@tgtmedia.org>",
   "homepage": "https://tgtmedia.co.uk/h/smart-cloud/extensions/installation",
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@gitlab.com:tgtmedialtd/smartcloud/core.git"
+    "url": "https://github.com/Videndum/CLI.git"
   },
   "smartcloud": {
     "packageType": "package"
