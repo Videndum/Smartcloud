@@ -1,0 +1,30 @@
+{
+    "cSpell.words": [
+        "appender",
+        "commanderror",
+        "commandfinished",
+        "commandstarted",
+        "commandunknown",
+        "cooldown",
+        "cooldowns",
+        "doesnt",
+        "exist",
+        "javacmd",
+        "loglevels",
+        "smartcloud",
+        "smartcloudai"
+    ],
+    "cSpell.ignoreWords": [
+        "apts",
+        "core",
+        "dbhost",
+        "dbname",
+        "dbpass",
+        "dbport",
+        "dbuser",
+        "fuzzypath",
+        "initialise",
+        "overnightjs",
+        "tasktimer"
+    ]
+}
