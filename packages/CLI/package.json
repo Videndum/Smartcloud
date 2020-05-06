@@ -4,7 +4,7 @@
   "description": "Command Line Interface for smartcloud",
   "author": "Jonathan Stevens <jonathan@tgtmedia.org>",
   "homepage": "https://tgtmedia.co.uk/h/smart-cloud/extensions/installation",
-  "license": "GPLv3",
+  "license": "GPL-3.0-or-later",
   "main": "lib/index.js",
   "directories": {
     "lib": "lib",
@@ -29,7 +29,6 @@
     "typescript": "^3.7.3"
   },
   "dependencies": {
-    "@smartcloudai/core": "^0.1.0-beta.0",
     "@types/fs-extra": "^8.1.0",
     "boxen": "^4.2.0",
     "cmdify": "0.0.4",
@@ -44,5 +43,8 @@
     "simple-git": "^1.129.0",
     "vorpal": "^1.12.0"
   },
-  "gitHead": "734e2349b4949ddb94e9c882149187608f3ee1db"
+  "gitHead": "734e2349b4949ddb94e9c882149187608f3ee1db",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }
