@@ -36,6 +36,7 @@
   "devDependencies": {
     "@types/fs-extra": "^8.1.0",
     "@types/node": "^13.1.1",
+    "standard-version": "^7.0.1",
     "tslint": "^6.1.0",
     "typescript": "^3.7.3"
   },
