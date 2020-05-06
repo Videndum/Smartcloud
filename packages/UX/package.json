@@ -1,7 +1,11 @@
 {
-  "name": "smartcloud",
+  "name": "@videndum/ux",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Videndum/UX.git"
+  },
   "scripts": {
     "start": "expo start",
     "desktop": "yarn expo-electron start",
@@ -54,5 +58,8 @@
     "electron-devtools-installer": "^2.2.4",
     "typescript": "^3.7.5"
   },
-  "private": true
+  "private": false,
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }
