@@ -1,7 +1,7 @@
 import { TaskTimer } from 'tasktimer';
 
-let Sentry:any
-try { Sentry = require('@sentry/node')}catch(_){}
+let Sentry: any
+try { Sentry = require('@sentry/node') } catch (_) { }
 
 /**
 * @class
@@ -31,21 +31,21 @@ class Core {
   public readonly appender = this.localLogger.getAppenders()[0];
   public readonly fs = require('fs-extra');
   public readonly sentry = Sentry
-  public extensions:any = {
+  public extensions: any = {
     built: 0,
     initialized: 0,
   }
   public loglevels = ["Unknown", "Debug", "Info", "Warn", "Error", "Fatal"]
 
-  public async registerModule (init: string, name: string, options: {api: [] | string, core?: any}) {
+  public async registerModule(init: string, name: string, options: { api: [] | string, core?: any }) {
     const self = this
     if (options.core) name = (name + (options.core.extensions.initialized + 1) || name)
     await core.pm.start({
-      name      : `Smartcloud ~ ${name}`,
-      script    : init,
-      max_memory_restart : '10M',
+      name: `Smartcloud ~ ${name}`,
+      script: init,
+      max_memory_restart: '10M',
       args: name,
-    }, function(err: any, app:any) {
+    }, function (err: any, app: any) {
       self.pm.disconnect();
       if (err) throw err
     });
@@ -67,37 +67,37 @@ class Core {
       *  }
       * @return       logs data to console, sentry and log file as appropriate
       */
-  log = (data:string, type?: number, extension?: string) => {
-    this.fs.ensureDir(`./logs`).catch((err: any) => {console.info(err)})
+  log = (data: string, type?: number, extension?: string) => {
+    this.fs.ensureDir(`./logs`).catch((err: any) => { console.info(err) })
     extension = (process.env.name || extension || "UNKNOWN")
     extension = extension.toUpperCase()
     if (extension.length < 30) {
       for (let i = extension.length; i < 30; i++) {
-         extension += ' ';
-     }
+        extension += ' ';
+      }
     }
-    let namedType:string = ""
-    if (type == undefined) {namedType = "[UNKNOWN]"; type = 0;}
+    let namedType: string = ""
+    if (type == undefined) { namedType = "[UNKNOWN]"; type = 0; }
     if (type > 0) {
       namedType = `[${this.loglevels[type].toUpperCase()}]`
     }
     if (namedType.length < 10) {
       for (let i = namedType.length; i < 10; i++) {
-         namedType += ' ';
-     }
+        namedType += ' ';
+      }
     }
     if (type >= this.config.logLevel || process.env.DEBUG == "true" || type == 0) {
       if (type >= 4) {
         try {
-          Sentry.withScope((scope:any) => {
+          Sentry.withScope((scope: any) => {
             if (type == 4) scope.setLevel(Sentry.Severity.Error);
             if (type == 5) scope.setLevel(Sentry.Severity.Fatal);
             Sentry.captureMessage("Error: " + data);
           });
-        } catch{}
+        } catch{ }
       }
-      if (process.env.name) {console.log(`${namedType}     ` + data)} else {console.log(`${namedType}     ${extension}` + data)}
-      switch(type) {
+      if (process.env.name) { console.log(`${namedType}     ` + data) } else { console.log(`${namedType}     ${extension}` + data) }
+      switch (type) {
         case 1:
           this.localLogger.debug(` ${extension}     ${data}`);
           break;

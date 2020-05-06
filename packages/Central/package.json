@@ -5,9 +5,13 @@
     "type": "git",
     "url": "https://gitlab.com/tgtmedialtd/smartcloud/core.git"
   },
-  "license": "GPLv3",
-  "description": "The Smart Cloud by TGT Media Ltd, the all in one solution to social media intergrations for small companies and communities",
-  "keywords": "Smart Cloud, Social Media, intergrations",
+  "license": "GPL-3.0-or-later",
+  "description": "The Smart Cloud by TGT Media Ltd, the all in one solution to social media integrations for small companies and communities",
+  "keywords": [
+    "Smart Cloud",
+    "Social Media",
+    "integrations"
+  ],
   "homepage": "https://tgtmedia.co.uk/h/smart-cloud/",
   "bugs": {
     "url": "https://tgtmedia.co.uk/support",
@@ -59,5 +63,8 @@
       "logs"
     ]
   },
-  "gitHead": "734e2349b4949ddb94e9c882149187608f3ee1db"
+  "gitHead": "734e2349b4949ddb94e9c882149187608f3ee1db",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }
