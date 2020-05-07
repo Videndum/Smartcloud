@@ -53,7 +53,7 @@
     "babel-loader": "^8.0.6",
     "babel-plugin-module-resolver": "^4.0.0",
     "babel-preset-expo": "^8.0.0",
-    "electron": "^7.1.10",
+    "electron": "^8.2.5",
     "electron-builder": "^22.3.2",
     "electron-devtools-installer": "^2.2.4",
     "typescript": "^3.7.5"
