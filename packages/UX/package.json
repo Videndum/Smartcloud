@@ -41,7 +41,7 @@
     "@babel/core": "^7.0.0",
     "@expo/electron-adapter": "^0.0.0-alpha.16",
     "@expo/webpack-config": "^0.10.11",
-    "@storybook/addon-actions": "^5.3.9",
+    "@storybook/addon-actions": "^5.3.18",
     "@storybook/addon-links": "^5.3.9",
     "@storybook/addons": "^5.3.9",
     "@storybook/react-native": "^5.3.9",
