@@ -55,7 +55,7 @@
     "babel-preset-expo": "^8.0.0",
     "electron": "^8.2.5",
     "electron-builder": "^22.3.2",
-    "electron-devtools-installer": "^2.2.4",
+    "electron-devtools-installer": "^3.0.0",
     "typescript": "^3.7.5"
   },
   "private": false,
