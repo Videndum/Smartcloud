@@ -38,7 +38,7 @@
     "sentry-expo": "^2.0.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0",
+    "@babel/core": "^7.9.6",
     "@expo/electron-adapter": "^0.0.0-alpha.16",
     "@expo/webpack-config": "^0.10.11",
     "@storybook/addon-actions": "^5.3.18",
