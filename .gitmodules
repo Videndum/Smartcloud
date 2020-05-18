@@ -13,3 +13,6 @@
 [submodule "packages/cli"]
 	path = packages/cli
 	url = https://github.com/Smartcloudgg/CLI
+[submodule "packages\\serverless"]
+	path = packages\\serverless
+	url = ./packages\\serverless
