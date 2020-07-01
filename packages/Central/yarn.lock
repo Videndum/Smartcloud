@@ -60,14 +60,14 @@
     "@opencensus/core" "^0.0.8"
     uuid "^3.2.1"
 
-"@overnightjs/core@^1.6.11":
-  version "1.6.15"
-  resolved "https://registry.yarnpkg.com/@overnightjs/core/-/core-1.6.15.tgz#6aee387838b0fe6d8da6b8f948e6015a9607b528"
-  integrity sha512-ITAKqtdrYu+Un8H7W/bwJBHoEykICTBeiswPIamnm1W9HFVvlrW9LRuJc5Wd8qvgiPkvHcCR9q+PAmyihHpXiQ==
+"@overnightjs/core@^1.7.4":
+  version "1.7.4"
+  resolved "https://registry.yarnpkg.com/@overnightjs/core/-/core-1.7.4.tgz#1d98329c77bcdbdb460d31c82024851c6dfe12fb"
+  integrity sha512-xC1rn84b2FnqgXYM88L8R46dTqYtev8jiq0qBTGWGIOm1N3r8ZDYCud5FMuizLjL4Cl4DvErKaSYx5pzxG8tMw==
   dependencies:
     express "^4.16.3"
     reflect-metadata "^0.1.13"
-    tslib "^1.9.3"
+    tslib "^2.0.0"
 
 "@pm2/agent-node@^1.1.10":
   version "1.1.10"
@@ -3197,6 +3197,11 @@ tslib@^1.10.0, tslib@^1.8.1, tslib@^1.9.3:
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.11.1.tgz#eb15d128827fbee2841549e171f45ed338ac7e35"
   integrity sha512-aZW88SY8kQbU7gpV19lN24LtXh/yD4ZZg6qieAJDDg+YBsJcSmLGK9QpnUjAKVG/xefmvJGd1WUmfpT/g6AJGA==
+
+tslib@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.0.tgz#18d13fc2dce04051e20f074cc8387fd8089ce4f3"
+  integrity sha512-lTqkx847PI7xEDYJntxZH89L2/aXInsyF2luSafe/+0fHOMjlBNXdH6th7f70qxLDhul7KZK0zC8V5ZIyHl0/g==
 
 tslint@^6.1.0:
   version "6.1.2"
