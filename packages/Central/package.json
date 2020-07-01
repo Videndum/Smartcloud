@@ -48,7 +48,7 @@
   "optionaldependencies": {},
   "devDependencies": {
     "@overnightjs/core": "^1.7.4",
-    "@sentry/cli": "^1.49.0",
+    "@sentry/cli": "^1.54.0",
     "@sentry/integrations": "^5.10.2",
     "@types/fs-extra": "^9.0.1",
     "@types/mysql": "^2.15.8",
