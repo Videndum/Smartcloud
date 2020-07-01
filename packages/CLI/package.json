@@ -39,7 +39,7 @@
     "inquirer-fuzzy-path": "^2.3.0",
     "inquirer-prompt-suggest": "^0.1.0",
     "jsdoc-to-markdown": "^5.0.3",
-    "request": "^2.88.0",
+    "request": "^2.88.2",
     "simple-git": "^2.4.0",
     "vorpal": "^1.12.0"
   },
