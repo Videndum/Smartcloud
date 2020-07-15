@@ -54,8 +54,12 @@ jobs:
           pullRequests: 'true'
           prWoLabels: 'skip-changelog'
           breakingLabels: 'Versioning - BREAKING'
-          enhancementLabels: ['Type - Enhancement', 'Type - Feature']
-          bugLabels: ['Type - Fix', 'Bug - Fixed']
+          enhancementLabels:
+            - 'Type - Enhancement'
+            - 'Type - Feature'
+          bugLabels:
+            - 'Type - Fix'
+            - 'Bug - Fixed'
           deprecatedLabels: 'Type - Decrecated'
           removedLabels: 'Type - Removal'
           securityLabels: 'security fix'
