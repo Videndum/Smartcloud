@@ -66,8 +66,8 @@ jobs:
           stripGeneratorNotice: "true"
       - name: Push all
         run: |
-        git config user.email "${{ github.actor }}@users.noreply.github.com"
-        git config user.name ${{ github.actor }}
-        git add .
-        git commit -m 'docs update changelog'
-        git push origin HEAD:master
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git config user.name ${{ github.actor }}
+          git add .
+          git commit -m 'docs update changelog'
+          git push origin HEAD:master
