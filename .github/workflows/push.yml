@@ -65,12 +65,14 @@ jobs:
           removedLabels: 'Type - Removal'
           securityLabels: 'security fix'
           stripGeneratorNotice: "false"
-      - run: ls
-      - name: push
-        uses: github-actions-x/commit@v2.6
+      - name: Commit files
+        run: |
+          ls
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m "Add changes" -a
+      - name: Push changes
+        uses: ad-m/github-push-action@master
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          push-branch: 'changelog'
-          commit-message: 'update docs'
-          files: CHANGELOG.md
-          force-add: 'true'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: 'changelog'
