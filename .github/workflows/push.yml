@@ -38,6 +38,7 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
   update_release_draft:
+    name: Create release Draft
     runs-on: ubuntu-latest
     steps:
       - uses: release-drafter/release-drafter@v5
@@ -45,6 +46,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   create-changelog:
+    name: Create Changelog
     runs-on: ubuntu-18.04
     steps:
       - name: "📥 Check-out"
@@ -60,5 +62,7 @@ jobs:
           deprecatedLabels: 'Type - Decrecated'
           removedLabels: 'Type - Removal'
           securityLabels: 'security fix'
+          stripGeneratorNotice: "true"
       - name: Push all
-        run: git commit -a -m 'docs update changelog' && git push
+        run: |
+        git config user.email "${{ github.actor }}@users.noreply.github.com" && git config user.name ${{ github.actor }} && git commit -a -m 'docs update changelog' && git push
