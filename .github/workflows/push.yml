@@ -70,6 +70,7 @@ jobs:
         uses: github-actions-x/commit@v2.6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          push-branch: 'master'
+          push-branch: 'changelog'
           commit-message: 'update docs'
           files: CHANGELOG.md
+          force-add: 'true'
