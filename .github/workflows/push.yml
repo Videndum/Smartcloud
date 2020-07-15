@@ -45,6 +45,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   create-changelog:
+    runs-on: ubuntu-18.04
     steps:
       - name: "📥 Check-out"
         uses: actions/checkout@v1
@@ -54,12 +55,8 @@ jobs:
           pullRequests: 'true'
           prWoLabels: 'skip-changelog'
           breakingLabels: 'Versioning - BREAKING'
-          enhancementLabels:
-            - 'Type - Enhancement'
-            - 'Type - Feature'
-          bugLabels:
-            - 'Type - Fix'
-            - 'Bug - Fixed'
+          enhancementLabels: 'Type - Enhancement, Type - Feature'
+          bugLabels: 'Type - Fix, Bug - Fixed'
           deprecatedLabels: 'Type - Decrecated'
           removedLabels: 'Type - Removal'
           securityLabels: 'security fix'
