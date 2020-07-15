@@ -1,0 +1,11 @@
+name: Project Management
+on:
+  project_card:
+    types: [created, moved]
+jobs:
+  triage:
+    name: Auto card labeler
+    runs-on: ubuntu-latest
+    steps:
+      - name: Adjust Lables
+        uses: technote-space/auto-card-labeler@v1

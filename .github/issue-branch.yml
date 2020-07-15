@@ -1,0 +1,33 @@
+
+mode: auto
+silent: false
+branchName: '${issue.number}-${issue.title}'
+autoCloseIssue: true
+branches:
+    - label: 'Type - Chore'
+      prefix: chore/
+    - label: 'Type - Enhancement'
+      prefix: enhancement/
+    - label: 'Type - Feature'
+      prefix: feature/
+    - label: 'Type - Documentation'
+      prefix: docs/
+    - label: 'Type - Bug'
+      prefix: bug/
+    - label: 'Type - Maintenance'
+      prefix: maintenance/
+    - label: 'Type - Optimisation'
+      prefix: optimisation/
+    - label: 'Type - Refactor'
+      prefix: refactor/
+    - label: 'Type - Style'
+      prefix: style/
+    - label: 'Type - Discussion'
+      skip: true
+    - label: 'Type - Question'
+      skip: true
+    - label: 'Type - Revert'
+      skip: true
+    - label: '*'
+      prefix: issue/
+
