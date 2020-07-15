@@ -51,6 +51,8 @@ jobs:
     steps:
       - name: "📥 Check-out"
         uses: actions/checkout@v1
+        with:
+          fetch-depth: 0
       - uses: heinrichreimer/github-changelog-generator-action@v2.1.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -63,10 +65,10 @@ jobs:
           removedLabels: 'Type - Removal'
           securityLabels: 'security fix'
           stripGeneratorNotice: "true"
-      - name: Push all
-        run: |
-          git config user.email "${{ github.actor }}@users.noreply.github.com"
-          git config user.name ${{ github.actor }}
-          git add .
-          git commit -m 'docs update changelog'
-          git push origin HEAD:master
+      - name: push
+        uses: github-actions-x/commit@v2.6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          push-branch: 'master'
+          commit-message: 'update docs'
+          files: CHANGELOG.md
