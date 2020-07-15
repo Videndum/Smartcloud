@@ -166,7 +166,7 @@ labels:
       description: This bug affects more than 50% of users and should be patched before any new features are added
 
 
-      - name: 'Size - XS'
+    - name: 'Size - XS'
       color: ffffff
       description: Less than 10 lines changed
     - name: 'Size - S'
