@@ -60,3 +60,5 @@ jobs:
           deprecatedLabels: 'Type - Decrecated'
           removedLabels: 'Type - Removal'
           securityLabels: 'security fix'
+      - name: Push all
+        run: git commit -a -m docs update changelog' && git push
