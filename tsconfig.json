@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "outDir": "/lib",
+    "pretty": true,
+    "sourceMap": true,
+    "inlineSources": true,
+    "sourceRoot": "/src",
+    "strict": true,
+    "allowJs": false,
+    "target": "ES2017",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "baseUrl": "/",
+    "declaration": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./typings"
+    ]
+  },
+  "compileOnSave": true,
+  "include": [
+    "./**/*"
+  ],
+  "exclude": [
+    "./packages/ux"
+  ]
+}

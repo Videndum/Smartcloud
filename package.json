@@ -1,0 +1,40 @@
+{
+  "name": "@smartcloudai/Application",
+  "version": "0.0.1-15",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Videndum/Smartcloud.git"
+  },
+  "license": "GPL-3.0-or-later",
+  "description": "The Smartcloud by Videndum Studio Ltd, the all in one solution to social media intergrations for small companies and communities",
+  "keywords": [
+    "Smart Cloud",
+    "Social Media",
+    "intergrations"
+  ],
+  "homepage": "https://smartcloud.gg/",
+  "bugs": {
+    "url": "https://tgtmedia.co.uk/support",
+    "email": "bugs@videndum.studio"
+  },
+  "author": {
+    "name": "Videndum Studio Ltd"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "main": "/packages/application/server/lib/index.js",
+  "bin": "bin/index.js",
+  "scripts": {
+    "install": "npm install pm2 lerna && lerna link && lerna bootstrap && git submodule foreach tsc -p tsconfig.json && cd packages/cli && npm install -g",
+    "dev": "pm2 start ecosystem.config.js --watch --no-daemon",
+    "inspect": "node --inspect-brk ./packages/application/server/lib/index.js",
+    "build": "smartcloud",
+    "prod": "pm2 start ecosystem.config.js --no-daemon"
+  },
+  "devDependencies": {
+    "git-submodule-tool": "^1.0.5",
+    "lerna": "^3.22.1",
+    "typescript": "^3.7.4"
+  }
+}
