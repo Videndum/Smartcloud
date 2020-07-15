@@ -76,14 +76,14 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: 'changelog'
+          branch: 'docs/changelog'
           force: true
       - name: pull-request
         uses: repo-sync/pull-request@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          source_branch: 'changelog'
+          source_branch: 'docs/changelog'
           destination_branch: "master"
-          pr_title: "docs: Updating changelog"
+          pr_title: "docs: updating changelog"
           pr_body: ":crown: *An automated PR*"
-          pr_label: "Type - Documentation, skip-changelog"
+          pr_label: "skip-changelog"
