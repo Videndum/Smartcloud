@@ -65,6 +65,7 @@ jobs:
           removedLabels: 'Type - Removal'
           securityLabels: 'security fix'
           stripGeneratorNotice: "true"
+      - run: ls
       - name: push
         uses: github-actions-x/commit@v2.6
         with:
