@@ -37,6 +37,8 @@ jobs:
         uses: actions/checkout@1.0.0
       - name: Sync labels
         uses: b4b4r07/github-labeler@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   create_issue_branch_job:
     name: Issue Branches
