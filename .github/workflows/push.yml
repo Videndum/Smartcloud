@@ -64,7 +64,7 @@ jobs:
           deprecatedLabels: 'Type - Decrecated'
           removedLabels: 'Type - Removal'
           securityLabels: 'security fix'
-          stripGeneratorNotice: "true"
+          stripGeneratorNotice: "false"
       - run: ls
       - name: push
         uses: github-actions-x/commit@v2.6
