@@ -1,3 +1,5 @@
+# We Recently decided that this method of building the bot was not worth our time, and are moving to a completely serverless method. We will keep people informated and will continue to work on the bot. If you want to continue working on or with the old version of our bot, feel free to fork the branch `selfhost`
+
 ---
 description: >-
   Smartcloud Artificial Assistant is a software developed by TGT Media Ltd for
@@ -37,7 +39,7 @@ All our official documentation is powered by markdown and can be located within 
 
 ## The Specifications
 
-Yeah, this is the boring bit, "What can you do", and our answer will always be "whatever you can imagine" because we build this application to be fully extendable, and even encourage it using our online package sharing tools built into our command line and user interfaces. 
+Yeah, this is the boring bit, "What can you do", and our answer will always be "whatever you can imagine" because we build this application to be fully extendable, and even encourage it using our online package sharing tools built into our command line and user interfaces.
 
 ## Getting Started
 
