@@ -130,7 +130,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          path-to-signatures: 'docs/getting-started/contributing/cla.json'
+          path-to-signatures: '.github/cla.json'
           path-To-cladocument: 'https://github.com/${{github.repository}}/docs/getting-started/contributing/cla.md'
           branch: 'chore/cla'
           label: true
