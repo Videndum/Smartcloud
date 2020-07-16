@@ -42,7 +42,7 @@ jobs:
 
   # Automatically labels based on the branch path
   pr-labeler:
-    name: Labeler
+    name: Branch Labeler
     runs-on: ubuntu-latest
     steps:
       - uses: TimonVS/pr-labeler-action@v3
@@ -50,6 +50,16 @@ jobs:
           configuration-path: .github/branch-labeler.yml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Automatically labels based on files changed
+  path-labeler:
+    name: Path Labeler
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/labeler@v2
+      with:
+        configuration-path: '.github/path-labeler.yml'
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
 
   # Automatically rebases on request
   rebase:
@@ -106,7 +116,7 @@ jobs:
 
   # Ensures the CLA is signed
   CLAssistant:
-    name: "CLA Assistant"
+    name: CLA Assistant
     runs-on: ubuntu-latest
     if: (github.event.comment.body == 'recheckcla' || github.event.comment.body == 'I have read the CLA Document and I hereby sign the CLA') || github.event_name == 'pull_request'
     steps:
