@@ -12,6 +12,7 @@ jobs:
 
   # syncs to the github inbuilt wiki
   job-sync-docs-to-wiki:
+    name: Sync to wiki
     runs-on: ubuntu-latest
     if: github.event_name != 'gollum'
     steps:
@@ -39,6 +40,7 @@ jobs:
 
   # syncs from the github inbuilt wiki
   job-sync-wiki-to-docs:
+    name: Sync from wiki
     runs-on: ubuntu-latest
     if: github.event_name == 'gollum'
     steps:
@@ -58,22 +60,8 @@ jobs:
         uses: repo-sync/pull-request@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          source_branch: 'docs/update-from-wiki'
-          destination_branch: "master"
+          source_branch: 'master'
+          destination_branch: 'docs/update-from-wiki'
           pr_title: "docs: updating docs from wiki"
           pr_body: ":crown: *An automated PR*"
           pr_label: "skip-changelog"
-
-  # Automatically merges bot pull requests made by job-sync-wiki-to-docs
-  merge-me:
-    name: Merge me!
-    needs:
-      - job-sync-wiki-to-docs
-    runs-on: ubuntu-latest
-    steps:
-      - name: Merge me!
-        uses: ridedott/merge-me-action@master
-        with:
-          GITHUB_LOGIN: github-actions
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MERGE_METHOD: SQUASH
