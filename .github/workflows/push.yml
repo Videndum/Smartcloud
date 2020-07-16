@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - development
 
 jobs:
   labeler:
@@ -50,9 +49,11 @@ jobs:
     name: Create Changelog
     runs-on: ubuntu-18.04
     steps:
-      - name: "📥 Check-out"
-        uses: actions/checkout@v1
+      - name: "Check-out"
+        uses: actions/checkout@v2
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: master
           fetch-depth: 0
       - uses: heinrichreimer/github-changelog-generator-action@v2.1.1
         with:
