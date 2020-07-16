@@ -9,6 +9,8 @@ on:
   gollum:
 
 jobs:
+
+  # syncs to the github inbuilt wiki
   job-sync-docs-to-wiki:
     runs-on: ubuntu-latest
     if: github.event_name != 'gollum'
@@ -22,6 +24,20 @@ jobs:
           destination: wiki
           token: ${{ secrets.GITHUB_TOKEN }}
 
+  # syncs to an external repository wiki (used for gitbook)
+  # sync-downstream:
+  #   name: Update wiki repo
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #       with:
+  #         fetch-depth: 0
+  #     - uses: nxtlvlsoftware/git-subtree-action@master
+  #       with:
+  #         repo: '${{ github.repository }}-wiki'
+  #         path: 'docs'
+  #         deploy_key: ${{ secrets.DOWNSTREAM_GITHUB_DEPLOY_KEY }}
+
+  # syncs from the github inbuilt wiki
   job-sync-wiki-to-docs:
     runs-on: ubuntu-latest
     if: github.event_name == 'gollum'
@@ -37,4 +53,27 @@ jobs:
           source: wiki
           destination: docs
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: 'development'
+          branch: 'docs/update-from-wiki'
+      - name: pull-request
+        uses: repo-sync/pull-request@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          source_branch: 'docs/update-from-wiki'
+          destination_branch: "master"
+          pr_title: "docs: updating docs from wiki"
+          pr_body: ":crown: *An automated PR*"
+          pr_label: "skip-changelog"
+
+  # Automatically merges bot pull requests made by job-sync-wiki-to-docs
+  merge-me:
+    name: Merge me!
+    needs:
+      - job-sync-wiki-to-docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Merge me!
+        uses: ridedott/merge-me-action@master
+        with:
+          GITHUB_LOGIN: github-actions
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MERGE_METHOD: SQUASH

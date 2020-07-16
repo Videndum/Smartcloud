@@ -1,0 +1,24 @@
+'Type - Documentation':
+    - docs/**/*
+    - README.md
+    - CHANGELOG.md
+    - LICENSE.md
+    - SECURITY.md
+'Type - Chore':
+    - contributing.json
+    - .github/**/*
+    - .all-contributorsrc
+    - .gitignore
+    - .whitesource
+    - package.json
+    - package-lock.json
+
+'Content - Workflow & CI':
+    - contributing.json
+    - .github/**/*
+    - .all-contributorsrc
+    - .gitignore
+    - .whitesource
+'Content - Dependences':
+    - package.json
+    - package-lock.json
