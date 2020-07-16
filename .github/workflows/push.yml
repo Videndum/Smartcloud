@@ -4,9 +4,9 @@ on:
   push:
     branches:
       - master
-      - development
 
 jobs:
+  # Ensures all the labels are correct all the time according to ../labels.yml
   labeler:
     runs-on: ubuntu-latest
     steps:
@@ -22,6 +22,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  # Automatically invites users to our team when their pull request is merged
   invite:
     runs-on: ubuntu-latest
     steps:
@@ -38,6 +39,7 @@ jobs:
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
+  # Using the config in ../release-drafter.yml creates release drafts automatically
   update_release_draft:
     name: Create release Draft
     runs-on: ubuntu-latest
@@ -46,13 +48,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  # creates a changelog, commits, pushes, and creates a pull request
   create-changelog:
     name: Create Changelog
     runs-on: ubuntu-18.04
     steps:
-      - name: "📥 Check-out"
-        uses: actions/checkout@v1
+      - name: "Check-out"
+        uses: actions/checkout@v2
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: master
           fetch-depth: 0
       - uses: heinrichreimer/github-changelog-generator-action@v2.1.1
         with:
@@ -91,6 +96,7 @@ jobs:
           pr_body: ":crown: *An automated PR*"
           pr_label: "skip-changelog"
 
+  # Automatically merges bot pull requests made by create-changelog
   merge-me:
     name: Merge me!
     needs:
