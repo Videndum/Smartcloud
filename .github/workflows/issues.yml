@@ -65,4 +65,4 @@ jobs:
           branch: 'development'
           label: true
           whitelist: bot*
-          empty-commit-flag: true
+          empty-commit-flag: false
