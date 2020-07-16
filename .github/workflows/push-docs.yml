@@ -45,25 +45,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           gitAuthorName: ${{ env.GIT_AUTHOR_NAME }}
           gitAuthorEmail: ${{ env.GIT_AUTHOR_EMAIL }}
-          branch: 'docs/sync'
-      - name: pull-request
-        uses: repo-sync/pull-request@v2
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          source_branch: 'docs/sync'
-          destination_branch: "master"
-          pr_title: "docs: updating docs from wiki"
-          pr_body: ":crown: *An automated PR*"
-          pr_label: "skip-changelog"
-
-  merge-me:
-    name: Merge me!
-    needs:
-      - job-sync-wiki-to-docs
-    runs-on: ubuntu-latest
-    steps:
-      - name: Merge me!
-        uses: ridedott/merge-me-action@master
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MERGE_METHOD: MERGE
+          branch: 'development'
