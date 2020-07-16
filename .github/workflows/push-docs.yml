@@ -9,7 +9,10 @@ on:
   gollum:
 
 jobs:
+
+  # syncs to the github inbuilt wiki
   job-sync-docs-to-wiki:
+    name: Sync to wiki
     runs-on: ubuntu-latest
     if: github.event_name != 'gollum'
     steps:
@@ -22,7 +25,22 @@ jobs:
           destination: wiki
           token: ${{ secrets.GITHUB_TOKEN }}
 
+  # syncs to an external repository wiki (used for gitbook)
+  # sync-downstream:
+  #   name: Update wiki repo
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #       with:
+  #         fetch-depth: 0
+  #     - uses: nxtlvlsoftware/git-subtree-action@master
+  #       with:
+  #         repo: '${{ github.repository }}-wiki'
+  #         path: 'docs'
+  #         deploy_key: ${{ secrets.DOWNSTREAM_GITHUB_DEPLOY_KEY }}
+
+  # syncs from the github inbuilt wiki
   job-sync-wiki-to-docs:
+    name: Sync from wiki
     runs-on: ubuntu-latest
     if: github.event_name == 'gollum'
     steps:
@@ -37,4 +55,13 @@ jobs:
           source: wiki
           destination: docs
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: 'development'
+          branch: 'docs/update-from-wiki'
+      - name: pull-request
+        uses: repo-sync/pull-request@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          source_branch: 'master'
+          destination_branch: 'docs/update-from-wiki'
+          pr_title: "docs: updating docs from wiki"
+          pr_body: ":crown: *An automated PR*"
+          pr_label: "skip-changelog"
