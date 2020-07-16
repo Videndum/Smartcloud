@@ -8,6 +8,7 @@ on:
 
 jobs:
   # Not sure why this isn't working, but have raised a ticket
+  # Automatically assigns the pull request to project 1
   # assign_project:
   #   runs-on: ubuntu-latest
   #   name: Assign to project
@@ -20,6 +21,7 @@ jobs:
   #         issue: ${{ github.event.issue.number }}
   #         project: 1
 
+  # Automatically blocks WIP pull request based on the title
   wip:
     name: Work in progress
     runs-on: ubuntu-latest
@@ -28,6 +30,7 @@ jobs:
     steps:
       - uses: wip/action@v1.0.0
 
+  # Ensures semantic titles to ensure semantic is achieved when merge is squashed
   semantic:
     name: Semantic Title
     runs-on: ubuntu-latest
@@ -37,16 +40,18 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  # Automatically labels based on the branch path
   pr-labeler:
     name: Labeler
     runs-on: ubuntu-latest
     steps:
       - uses: TimonVS/pr-labeler-action@v3
         with:
-          configuration-path: .github/pr-labeler.yml
+          configuration-path: .github/branch-labeler.yml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  # Automatically rebases on request
   rebase:
     name: Rebase
     if: github.event.issue.pull_request != '' && contains(github.event.comment.body, '/rebase')
@@ -61,6 +66,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  # Automatically checks for conflicts with other pull requests
   conflibot:
     name: Conflict Check
     runs-on: ubuntu-latest
@@ -71,6 +77,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
+  # Automatically labels the pull request based on size
   label_sizes:
     name: Pull Request Size
     runs-on: ubuntu-latest
@@ -97,6 +104,7 @@ jobs:
           github_token: ${{ secrets.github_token }}
           labels: ${{ steps.size.outputs.new_label }}
 
+  # Ensures the CLA is signed
   CLAssistant:
     name: "CLA Assistant"
     runs-on: ubuntu-latest
@@ -128,6 +136,7 @@ jobs:
           pr_body: ":crown: *An automated PR*"
           pr_label: "skip-changelog"
 
+  # Automatically merges bot pull requests made by CLAssistant
   merge-me:
     name: Merge me!
     needs:

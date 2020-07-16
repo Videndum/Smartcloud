@@ -7,6 +7,7 @@ on:
     types: [created, edited]
 
 jobs:
+  # Automatically assigns to project based on tags
   assign_project:
     runs-on: ubuntu-latest
     name: Assign to project
@@ -28,6 +29,7 @@ jobs:
           issue: ${{ github.event.issue.number }}
           project: 2
 
+  # Automatically creates branches based on tags
   create_issue_branch_job:
     name: Issue Branches
     runs-on: ubuntu-latest
@@ -37,6 +39,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  # Automatically reverts commits on request
   revert-commit:
       runs-on: ubuntu-latest
       if: contains(github.event.comment.body, '/revert')
@@ -48,6 +51,7 @@ jobs:
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  # Ensures the CLA is signed
   CLAssistant:
     name: "CLA Assistant"
     runs-on: ubuntu-latest
@@ -79,6 +83,7 @@ jobs:
           pr_body: ":crown: *An automated PR*"
           pr_label: "skip-changelog"
 
+  # Automatically merges bot pull requests made by CLAssistant
   merge-me:
     name: Merge me!
     needs:
