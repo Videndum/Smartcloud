@@ -68,11 +68,13 @@ jobs:
           stripGeneratorNotice: "false"
       - name: Commit files
         run: |
+          set +e
           ls
           git add CHANGELOG.md
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git commit -m "docs(changelog): update" -a
+          set -e
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
