@@ -1,3 +1,5 @@
+# Both https://github.com/ilyam8/periodic-pr-labeler & https://github.com/actions/labeler are configured here. Be careful to ensure you use the correct format as documented
+
 'Type - Documentation':
     - docs/**/*
     - README.md
