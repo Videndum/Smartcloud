@@ -17,7 +17,7 @@ jobs:
     if: github.event_name != 'gollum'
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.3.2
       - name: Sync docs to wiki
         uses: newrelic/wiki-sync-action@master
         with:
@@ -29,7 +29,7 @@ jobs:
   # sync-downstream:
   #   name: Update wiki repo
   #   steps:
-  #     - uses: actions/checkout@v2
+  #     - uses: actions/checkout@v2.3.2
   #       with:
   #         fetch-depth: 0
   #     - uses: nxtlvlsoftware/git-subtree-action@master
@@ -45,7 +45,7 @@ jobs:
     if: github.event_name == 'gollum'
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.3.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           ref: master

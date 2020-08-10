@@ -68,7 +68,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v2.3.1
+      uses: actions/checkout@v2.3.2
       with:
         fetch-depth: 0
     - name: Automatic Rebase
@@ -81,7 +81,7 @@ jobs:
     name: Conflict Check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.1
+      - uses: actions/checkout@v2.3.2
       - name: Warn potential conflicts
         uses: wktk/conflibot@v1
         with:
@@ -92,7 +92,7 @@ jobs:
     name: Pull Request Size
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.1
+      - uses: actions/checkout@v2.3.2
 
       - uses: actions-ecosystem/action-size@v2
         id: size
@@ -121,7 +121,7 @@ jobs:
     if: (github.event.comment.body == 'recheckcla' || github.event.comment.body == 'I have read the CLA Document and I hereby sign the CLA') || github.event_name == 'pull_request'
     steps:
       - name: "Check-out"
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.3.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           ref: master
