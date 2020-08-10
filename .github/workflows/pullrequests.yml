@@ -126,7 +126,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           ref: master
       - name: "CLA Assistant"
-        uses: cla-assistant/github-action@v1.3.0-alpha
+        uses: cla-assistant/github-action@v1.4.3-alpha
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
