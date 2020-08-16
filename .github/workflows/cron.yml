@@ -1,32 +1,118 @@
-name: Mark stale issues and pull requests
+name: Cron Management
 
 on:
   schedule:
-  - cron: '*/15 * * * *'
+    - cron: "0 */12 * * *"
 
 jobs:
-  # Awaiting new package - fix has been done
-  # # Automatically labels all pull requests based on changed files
-  # labeler:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: docker://docker.io/ilyam8/periodic-pr-labeler:v0.1.0
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #         GITHUB_REPOSITORY: ${{ github.repository }}
-  #         LABEL_MAPPINGS_FILE: .github/path-labeler.yml
-
-  # Automatically marks pull request and issues as stale after x length of time
-  stale:
+  # Automatically labels all pull requests based on changed files
+  labeler:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/stale@v3.0.8
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        stale-issue-message: 'This issue has been automatically marked as stale because it has not had recent activity. It will be closed if no further activity occurs. Thank you for your contributions.'
-        stale-issue-label: 'Status - Stale'
-        stale-pr-message: 'Stale pull request message'
-        stale-pr-label: 'Status - Abandoned'
-        exempt-issue-label: 'security vulnerability'
-        days-before-stale: 30
-        days-before-close: 5
+      - uses: technote-space/load-config-action@v1
+        with:
+          CONFIG_FILENAME: allconfig.yml
+      - uses: docker://docker.io/ilyam8/periodic-pr-labeler:v0.1.1
+        if: ${{env.periodicLabeler}} == true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          LABEL_MAPPINGS_FILE: ${{env.periodicPath}}
+      - uses: actions/stale@v3.0.8
+        if: ${{env.stale}} == true
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          stale-issue-message: ${{env.stale-issue-message}}
+          stale-issue-label: ${{env.stale-issue-label}}
+          stale-pr-message: ${{env.stale-pr-message}}
+          stale-pr-label: ${{env.stale-pr-label}}
+          exempt-issue-labels: ${{env.exempt-issue-labels}}
+          days-before-stale: ${{env.days-before-stale}}
+          days-before-close: ${{env.days-before-close}}
+      
+  updater: 
+    name: Automatically update workflow files
+    runs-on: ubuntu-latest
+    if: github.repository != Videndum/Universal-GitAction-Workflows
+    steps:
+      - uses: technote-space/load-config-action@v1
+        with:
+          CONFIG_FILENAME: allconfig.yml
+      - uses: peterjgrainger/action-create-branch@2.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          branch: ${{env.autoBranchPrefix}}${{env.autoBranch}}_workflows
+      - name: Import GPG key
+        if: ${{env.gpgEnable}} == true
+        id: import_gpg
+        uses: crazy-max/ghaction-import-gpg@v2
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+          PASSPHRASE: ${{ secrets.PASSPHRASE }}
+          git_user_signingkey: ${{env.gpgSigningKey}}
+          git_commit_gpgsign: ${{env.gpgCommitSign}}
+          git_tag_gpgsign: ${{env.gpgTagSign}}
+          git_push_gpgsign: ${{env.gpgPushSign}}
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{env.autoBranchPrefix}}${{env.autoBranch}}_workflows
+          fetch-depth: 0
+      - name: Read package.json
+        id: package
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./workflow-version.txt
+      - run: |
+          git clone https://github.com/Videndum/Universal-GitAction-Workflows.git .github/.tmp
+          cd .github/.tmp || exit
+          latestTag=$(git describe --tags --abbrev=0 --match v*)
+          git checkout "$latestTag"
+          if [ "${{ steps.package.outputs.content }}" == "$latestTag" ]; then
+            cd ../.. || exit
+            echo ::set-env name=latestTag::"$latestTag"
+            cp -f .github/.tmp/.github/allconfig.yml .github/allconfig.yml 2>> template-sync-log.txt
+            if [ ${{env.gpgEnable}} == false ]; then echo ::set-env name=commitName::${{ env.changelogName }} ; echo ::set-env name=commitEmail::${{ env.changelogEmail }} ; else echo ::set-env name=commitName::${{ steps.import_gpg.outputs.name }} ; echo ::set-env name=commitEmail::${{ steps.import_gpg.outputs.email }} ; fi
+          fi
+      - name: Commit Config
+        id: commitConfig
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "chore!: update allconfig.yml to version ${{env.latestTag}} (Possibily Breaking Change)"
+          branch: ${{env.autoBranchPrefix}}${{env.autoBranch}}_workflows
+          commit_user_name: ${{env.commitName}}
+          commit_user_email: ${{env.commitEmail}}
+          commit_author: "${{env.commitName}} <${{env.commitEmail}}>"
+          commit_options: "${{env.commitOptions}}"
+      - run: |
+          cp -fR .github/.tmp/.github/workflows .github/workflows 2>> template-sync-log.txt
+      - name: Commit Workflows
+        id: commitWorkflow
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "chore!: update workflows to version ${{env.latestTag}} (Possibily Breaking Change)"
+          branch: ${{env.autoBranchPrefix}}${{env.autoBranch}}_workflows
+          commit_user_name: ${{env.commitName}}
+          commit_user_email: ${{env.commitEmail}}
+          commit_author: "${{env.commitName}} <${{env.commitEmail}}>"
+          commit_options: "${{env.commitOptions}}"
+      - name: pull-request
+        uses: repo-sync/pull-request@v2
+        if: ${{steps.commitWorkflow.outputs.changes_detected}} == true || ${{steps.commitConfig.outputs.changes_detected}} == true
+        with:
+          github_token: ${{ secrets.ACCESS_TOKEN }}
+          source_branch: ${{env.autoBranchPrefix}}${{env.autoBranch}}_workflows
+          destination_branch: ${{env.autoDestination}}
+          pr_title: "chore: BREAKING update template files to latest version (${{env.latestTag}})"
+          pr_body: |
+            This pull request has been automatically generated to update the workflow templates which we have created. This automatic update is very likely **BREAKING** for anyone who has modified files heavily. 
+            
+            Please ensure to review this change carefully.
+      - name: Delete branch
+        if: ${{steps.commitWorkflow.outputs.changes_detected}} != true && ${{steps.commitConfig.outputs.changes_detected}} != true
+        uses: dawidd6/action-delete-branch@v3
+        with:
+          github_token: ${{github.token}}
+          branches: ${{env.autoBranchPrefix}}${{env.autoBranch}}_workflows
+  

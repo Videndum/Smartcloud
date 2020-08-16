@@ -7,92 +7,51 @@ on:
     types: [created, edited]
 
 jobs:
-  # Automatically assigns to project based on tags
-  assign_project:
-    runs-on: ubuntu-latest
-    name: Assign to project
-    steps:
-      - name: Assign NEW issues to project DevOps
-        uses: skeet70/default-project-board-action@v1
-        if: github.event.action == 'opened'
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          repository: ${{ github.repository }}
-          issue: ${{ github.event.issue.number }}
-          project: 1
-      - name: Assign NEW bugs to project bugs
-        uses: skeet70/default-project-board-action@v1
-        if: contains(github.event.issue.labels.*.name, 'Type - Bug')
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          repository: ${{ github.repository }}
-          issue: ${{ github.event.issue.number }}
-          project: 2
-
-  # Automatically creates branches based on tags
-  create_issue_branch_job:
-    name: Issue Branches
+  # Automatically applies labels according to title
+  AutoLabel:
+    name: Issue Automation
     runs-on: ubuntu-latest
     steps:
-    - name: Create Issue Branch
-      uses: robvanderleek/create-issue-branch@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  # Automatically reverts commits on request
-  revert-commit:
-      runs-on: ubuntu-latest
-      if: contains(github.event.comment.body, '/revert')
-      steps:
+      - uses: technote-space/load-config-action@v1
+        with:
+          CONFIG_FILENAME: allconfig.yml
       - name: Checkout
-        uses: actions/checkout@v2.3.1
-      - name: Automatic Revert
-        uses: srt32/revert@v0.0.1
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  # Ensures the CLA is signed
-  CLAssistant:
-    name: "CLA Assistant"
-    runs-on: ubuntu-latest
-    if: (github.event.comment.body == 'recheckcla' || github.event.comment.body == 'I have read the CLA Document and I hereby sign the CLA') || github.event_name == 'pull_request'
-    steps:
-      - name: "Check-out"
+        if: ${{env.checkProfanity}} == true
         uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          ref: master
-      - name: "CLA Assistant"
-        uses: cla-assistant/github-action@v1.3.0-alpha
+      - name: Profanity check step
+        if: ${{env.checkProfanity}} == true
+        uses: tailaiw/mind-your-language-action@v1.0.3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: github/issue-labeler@v2.2
+        if: ${{env.labelTitle}} == true
         with:
-          path-to-signatures: '.github/cla.json'
-          path-To-cladocument: 'https://github.com/${{github.repository}}/docs/getting-started/contributing/cla.md'
-          branch: 'chore/cla'
-          label: true
-          whitelist: bot*
-          empty-commit-flag: false
-      - name: pull-request
-        uses: repo-sync/pull-request@v2
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          configuration-path: ${{env.labelTitlePath}}
+          enable-versioned-regex: ${{env.Labelversioned}}
+      - uses: JasonEtco/is-sponsor-label-action@v1
+        if: ${{env.labelSponsor}} == true
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          source_branch: 'chore/cla'
-          destination_branch: "master"
-          pr_title: "docs: updating changelog"
-          pr_body: ":crown: *An automated PR*"
-          pr_label: "skip-changelog"
-
-  # Automatically merges bot pull requests made by CLAssistant
-  merge-me:
-    name: Merge me!
-    needs:
-      - CLAssistant
-    runs-on: ubuntu-latest
-    steps:
-      - name: Merge me!
-        uses: ridedott/merge-me-action@master
-        with:
-          GITHUB_LOGIN: github-actions
+          label: ${{env.sponsorLabel}}
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MERGE_METHOD: SQUASH
+      - run: if [ ${{env.useOrg}} == true ]; then echo ::set-env name=projectPath::"org/${{github.repository_owner}}" ; else echo ::set-env name=projectPath::"${{github.repository}}" ; fi
+      - name: Assign NEW issues to project DevOps
+        uses: docker://takanabe/github-actions-automate-projects:v0.0.1
+        if: ( github.event.action == 'opened' && ${{env.assignProjects}} == true )
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          GITHUB_PROJECT_URL: https://github.com/${{env.projectPath}}/projects/${{env.DevOps}}
+          GITHUB_PROJECT_COLUMN_NAME: ${{env.DevOpsColumn}}
+      - name: Assign NEW bugs to project bugs
+        uses: docker://takanabe/github-actions-automate-projects:v0.0.1
+        if: ( contains(github.event.issue.labels.*.name, 'Type - Bug') && ${{env.assignProjects}} == true )
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          GITHUB_PROJECT_URL: https://github.com/${{env.projectPath}}/projects/${{env.Issues}}
+          GITHUB_PROJECT_COLUMN_NAME: ${{env.IssuesColumn}}
+      - name: Create Issue Branch
+        if: ${{env.issueBranch}} == true
+        uses: robvanderleek/create-issue-branch@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

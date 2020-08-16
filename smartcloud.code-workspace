@@ -1,0 +1,46 @@
+{
+  "folders": [
+    {
+      "name": "✨ @videndum/smartcloud",
+      "path": "."
+    },
+    {
+      "name": "🚀 @videndum/smartcloud-webfront",
+      "path": "packages/public/webfront"
+    },
+    {
+      "name": "🚀 @videndum/smartcloud-webpanel",
+      "path": "packages/public/webpanel"
+    },
+    {
+      "name": "📦 @videndum/smartcloud-discord",
+      "path": "packages/containers/discord"
+    },
+    {
+      "name": "📦 @videndum/smartcloud-components",
+      "path": "packages/public/components"
+    },
+    {
+      "name": "⚙️ @videndum/smartcloud-login",
+      "path": "packages/serverless/login"
+    }
+  ],
+  "settings": {},
+  "extensions": {
+    "recommendations": [
+      "tabnine.tabnine-vscode",
+      "eamodio.gitlens",
+      "yzhang.markdown-all-in-one",
+      "davidanson.vscode-markdownlint",
+      "silvenon.mdx",
+      "aaron-bond.better-comments",
+      "coenraads.bracket-pair-colorizer-2",
+      "oderwat.indent-rainbow",
+      "ms-vsliveshare.vsliveshare",
+      "bierner.github-markdown-preview",
+      "tabnine.tabnine-vscode",
+      "visualstudioexptteam.vscodeintellicode",
+      "leizongmin.node-module-intellisense"
+    ]
+  }
+}
