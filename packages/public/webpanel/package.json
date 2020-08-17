@@ -27,7 +27,11 @@
     "extends": "react-app"
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
@@ -40,6 +44,7 @@
     "@react-navigation/bottom-tabs": "^5.6.1",
     "@react-navigation/native": "^5.6.1",
     "@react-navigation/stack": "^5.6.2",
+    "@videndum/smartcloud-components": "^0.0.1",
     "electron": "^9.1.2",
     "electron-is-dev": "^1.2.0",
     "expo": "^38.0.8",
@@ -50,6 +55,9 @@
     "expo-splash-screen": "^0.3.1",
     "expo-status-bar": "^1.0.2",
     "expo-web-browser": "^8.3.1",
+    "prettier-plugin-organize-imports": "^1.1.1",
+    "prettier-plugin-pkg": "^0.8.0",
+    "prettier-standard": "^16.4.1",
     "react": "^16.11.0",
     "react-dom": "^16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
@@ -59,8 +67,7 @@
     "react-native-screens": "^2.9.0",
     "react-native-vector-icons": "^7.0.0",
     "react-native-web": "^0.11.7",
-    "react-scripts": "3.4.1",
-    "@videndum/smartcloud-components": "^0.0.1"
+    "react-scripts": "3.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.11.0",
