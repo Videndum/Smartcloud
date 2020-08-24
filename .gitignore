@@ -1,6 +1,9 @@
 .svn
 node_modules
+.blackbox
 .blackbox/pubring.gpg~
+.blackbox/pubring.kbx~
+.blackbox/secring.gpg
 .blackbox/pubring.kbx~
 .blackbox/secring.gpg
 
@@ -19,8 +22,7 @@ amplifyconfiguration.json
 amplify-build-config.json
 amplify-gradle-config.json
 amplifytools.xcconfig/.blackbox/pubring.gpg~
-/.blackbox/pubring.kbx~
-/.blackbox/secring.gpg
+
 
 packages/containers/discord/logs
 *.log
