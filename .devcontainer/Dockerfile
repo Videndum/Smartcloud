@@ -36,4 +36,4 @@ RUN echo "source /usr/local/share/copy-kube-config.sh" | tee -a /root/.bashrc >>
 # RUN sudo -u node bash -c "source /usr/local/share/nvm/nvm.sh && nvm install ${EXTRA_NODE_VERSION}"
 
 # [Optional] Uncomment if you want to install more global node packages
-RUN sudo -u node npm install -g yarn-recursive
+RUN sudo -u node npm install -g yarn-recursive @aws-amplify/cli

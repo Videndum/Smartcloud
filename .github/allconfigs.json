@@ -232,7 +232,7 @@
   },
   "wiki": {
     "secret": false,
-    "enabled": true,
+    "enabled": false,
     "vars": {
       "enabled": true,
       "docsToWiki": true,
