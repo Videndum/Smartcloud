@@ -1,0 +1,35 @@
+{
+  "core": {
+    "debug": "",
+    "developer": "",
+    "init": "",
+    "version_dev": ""
+  },
+  "errors": {
+    "fileDirectory": {
+      "caught": "",
+      "file": "",
+      "solved": "",
+      "thrown": ""
+    },
+    "unspecific": {
+      "default": "",
+      "localize": ""
+    }
+  },
+  "logging": {
+    "debug": "",
+    "error": "",
+    "fatal": "",
+    "info": "",
+    "level": "",
+    "sentry": {
+      "config": "",
+      "config_dev": "",
+      "default": "",
+      "initialised": ""
+    },
+    "unknown": "",
+    "warn": ""
+  }
+}
