@@ -1,6 +1,5 @@
 .svn
 node_modules
-.blackbox
 .blackbox/pubring.gpg~
 .blackbox/pubring.kbx~
 .blackbox/secring.gpg
@@ -25,4 +24,9 @@ amplifytools.xcconfig/.blackbox/pubring.gpg~
 
 
 packages/containers/discord/logs
-*.log
+*.log/.blackbox/pubring.gpg~
+/.blackbox/pubring.kbx~
+/.blackbox/secring.gpg
+/.blackbox/pubring.gpg~
+/.blackbox/pubring.kbx~
+/.blackbox/secring.gpg
