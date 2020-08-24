@@ -1,11 +1,3 @@
----
-name: Default Template
-about: The default template used by Github for pull requests
-title: '[type]([scope]): [title]'
-labels: ''
-assignees: ''
----
-
 <!-- Thank you for concidering to create a pull request for this project.
 To ensure a smoove transition, please follow the steps detailed bellow.
 
