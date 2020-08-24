@@ -1,0 +1,15 @@
+{
+  "trigger": true,
+  "modules": [
+    "captcha-define-challenge"
+  ],
+  "parentResource": "smartcloud4e11c20c",
+  "functionName": "smartcloud4e11c20cDefineAuthChallenge",
+  "resourceName": "smartcloud4e11c20cDefineAuthChallenge",
+  "parentStack": "auth",
+  "triggerEnvs": [],
+  "triggerDir": "/usr/local/share/npm-global/lib/node_modules/@aws-amplify/cli/node_modules/amplify-category-auth/provider-utils/awscloudformation/utils/../triggers/DefineAuthChallenge",
+  "triggerTemplate": "DefineAuthChallenge.json.ejs",
+  "roleName": "smartcloud4e11c20cDefineAuthChallenge",
+  "skipEdit": true
+}

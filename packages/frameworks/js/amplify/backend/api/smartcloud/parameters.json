@@ -1,0 +1,11 @@
+{
+    "AppSyncApiName": "smartcloud",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authsmartcloud4e11c20c",
+            "Outputs.UserPoolId"
+        ]
+    }
+}

@@ -3,6 +3,8 @@ node_modules
 .blackbox/pubring.gpg~
 .blackbox/pubring.kbx~
 .blackbox/secring.gpg
+.blackbox/pubring.kbx~
+.blackbox/secring.gpg
 
 #amplify
 amplify/\#current-cloud-backend
@@ -19,8 +21,12 @@ amplifyconfiguration.json
 amplify-build-config.json
 amplify-gradle-config.json
 amplifytools.xcconfig/.blackbox/pubring.gpg~
-/.blackbox/pubring.kbx~
-/.blackbox/secring.gpg
+
 
 packages/containers/discord/logs
-*.log
+*.log/.blackbox/pubring.gpg~
+/.blackbox/pubring.kbx~
+/.blackbox/secring.gpg
+/.blackbox/pubring.gpg~
+/.blackbox/pubring.kbx~
+/.blackbox/secring.gpg
