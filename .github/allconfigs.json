@@ -232,9 +232,9 @@
   },
   "wiki": {
     "secret": false,
-    "enabled": false,
+    "enabled": true,
     "vars": {
-      "enabled": true,
+      "enabled": false,
       "docsToWiki": true,
       "docsToWikiSource": "docs",
       "docsToWikiDestination": "wiki",
