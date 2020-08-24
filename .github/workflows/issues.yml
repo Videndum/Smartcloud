@@ -42,7 +42,7 @@ jobs:
       - run: if [ ${{env.projects_useOrg}} == true ]; then echo ::set-env name=projectPath::"org/${{github.repository_owner}}" ; else echo ::set-env name=projectPath::"${{github.repository}}" ; fi
       - name: Assign NEW issues to project DevOps
         uses: docker://takanabe/github-actions-automate-projects:v0.0.1
-        if: ( github.event.action == 'opened' && ${{env.projects_enabled}} == true )
+        if: github.event.action == 'opened' && ${{env.projects_enabled}} == true
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           GITHUB_PROJECT_URL: https://github.com/${{env.projectPath}}/projects/${{env.projects_devOps}}
@@ -50,7 +50,7 @@ jobs:
         continue-on-error: true
       - name: Assign NEW bugs to project bugs
         uses: docker://takanabe/github-actions-automate-projects:v0.0.1
-        if: ( contains(github.event.issue.labels.*.name, 'Type - Bug') && ${{env.projects_enabled}} == true )
+        if: contains(github.event.issue.labels.*.name, 'Type - Bug') && ${{env.projects_enabled}} == true
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           GITHUB_PROJECT_URL: https://github.com/${{env.projectPath}}/projects/${{env.projects_issues}}
