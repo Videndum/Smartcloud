@@ -1,11 +1,12 @@
 ---
-
 name: Code Refactoring
 about: Refactoring code for community benefit
 title: 'refactor: '
 labels: 'Type - Refactor'
 assignees: ''
----**Describe the refactor**
+---
+
+**Describe the refactor**
 Please briefly describe what part of the code base needs to be refactored.
 
 **Improvements**
