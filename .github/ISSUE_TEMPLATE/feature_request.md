@@ -1,50 +1,45 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
-title: 'feat: '
-labels: 'Type - Feature'
-assignees: ''
+title: 'feat([context]): '
 ---
 
-### Proposal
+<!-- Please use [context] in title to discribe the package related to this issue.
+Valid options are; smartcloudjs, cli, discord, workflows, components, webfront, console, webdocs
+smartcloud-discord context example: bug(discord): {your title here}
+-->
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+### My feature request explained
 
-- Include use cases, benefits, and/or goals (contributes to our vision?)
+<!-- A clear and concise description of what the problem is. E.g. I'm always frustrated when [...]
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+Include:
+- use cases
+- benefits
+- goals
+- does it contribute to our vision?
+-->
 
-**Intended users**
-Who will use this feature? If known, include any of the following: types of users (e.g. Developer), personas, or specific company roles (e.g. Release Manager). It's okay to write "Unknown" and fill this field in later.
+### Describe the solution you'd like
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+<!-- A clear and concise description of what you want to happen. -->
 
-**Permissions and Security**
-What permissions are required to perform the described actions? Are they consistent with the existing permissions as documented for users and groups as appropriate? Is the proposed behaviour consistent between the UI, API, and other access methods (e.g. email replies)?
+### Intended users
 
-**What does success look like, and how can we measure that?**
-Define both the success metrics and acceptance criteria. Note that success metrics indicate the desired business outcomes, while acceptance criteria indicate when the solution is working correctly. If there is no way to measure success, link to an issue that will implement a way to measure this.
+<!-- Who will use this feature? If known, include any of the following: types of users (e.g. Developer), personas, or specific company roles (e.g. Release Manager). It's okay to write "Unknown" and fill this field in later. -->
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+### Describe alternatives you've considered
 
-### Feature Process
+<!-- A clear and concise description of any alternative solutions or features you've considered. -->
 
-**Documentation**
+### Permissions and Security
 
-- [ ] Documentation include in feature branch
-- [ ] Merge Request created
+<!-- What permissions are required to perform the described actions? Are they consistent with the existing permissions as documented for users and groups as appropriate? Is the proposed behaviour consistent between the UI, API, and other access methods (e.g. email replies)? -->
 
-**Availability & Testing**
-This section needs to be retained and filled in during the workflow planning breakdown phase of this feature proposal, if not earlier.
+### What does success look like, and how can we measure
 
-What risks does this change pose to our availability? How might it affect the quality of the product? What additional test coverage or changes to tests will be needed? Will it require cross-browser testing?
+<!-- Define both the success metrics and acceptance criteria. Note that success metrics indicate the desired business outcomes, while acceptance criteria indicate when the solution is working correctly. If there is no way to measure success, link to an issue that will implement a way to measure this. -->
 
-Please list the test areas (unit, integration and end-to-end) that needs to be added or updated to ensure that this feature will work as intended. Please use the list below as guidance.
-
-- Unit test changes
-- Integration test changes
-- End-to-end test change
+<!-- Uncomment to add any other context or screenshots about the feature request here.
+### Additional context
+-->
