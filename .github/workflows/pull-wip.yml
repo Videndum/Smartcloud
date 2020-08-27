@@ -1,0 +1,28 @@
+name: Pull Request Management
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+jobs:
+  # Automatically blocks WIP pull request based on the title
+  wip:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Get Configurations
+        uses: Videndum/manage-github-secrets@1.0.0-beta
+        with:
+          settings: ${{ secrets.SETTINGS }}
+          mode: 'environment'
+          token: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Work in progress label
+      #   uses: y-temp4/add-wip-label@v1.0.0
+      #   if: ${{env.wip_label}} == true
+      #   with:
+      #     repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Work in progress status
+        uses: wip/action@v1.0.0
+        if: ${{env.wip_enabled}} == true

@@ -26,12 +26,12 @@ Related Pull Request(s):
 Related issue(s):
 -->
 
-<!--
 ## Author's checklist
 
-## Reviewing checklist
+- [ ] Code has passed all 
 
-All reviewers can help ensure accuracy, clarity, completeness.
+<!--
+## Reviewing checklist
 
 ### 1. Primary Reviewer
 

@@ -1,0 +1,46 @@
+name: Pull Request Automerge
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+
+jobs:
+  awaitCheck:
+    runs-on: ubuntu-latest
+    steps:
+      # This step will retry until required check passes
+      # and will fail the whole workflow if the check conclusion is not a success
+      - name: Wait on autoapproval checks
+        uses: lewagon/wait-on-check-action@v0.1-beta.2
+        with:
+          ref: ${{github.sha}} # can be commit SHA or tag too
+          check-name: approval
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 20 # seconds
+
+  automerge:
+    needs:
+      - automerge
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Configurations
+        uses: Videndum/manage-github-secrets@1.0.0-beta
+        with:
+          settings: ${{ secrets.SETTINGS }}
+          mode: 'environment'
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: automerge
+        if: ${{env.merge_enabled}} == true
+        uses: 'pascalgn/automerge-action@v0.9.0'
+        env:
+          GITHUB_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+          MERGE_LABELS: ${{env.merge_labels}}
+          MERGE_REMOVE_LABELS: ${{env.merge_deleteLabels}}
+          MERGE_METHOD: ${{env.merge_method}}
+          MERGE_FORKS: ${{env.merge_forks}}
+          MERGE_RETRIES: ${{env.merge_retries}}
+          MERGE_RETRY_SLEEP: ${{env.merge_sleep}}
+          MERGE_DELETE_BRANCH: ${{env.merge_delete}}
