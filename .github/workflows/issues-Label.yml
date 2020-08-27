@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v2
       # super Labeler
       - name: Super Labeller
-        uses: IvanFon/super-labeler-action@v1
+        uses: IvanFon/super-labeler-action@master
         with:
           github-token: '${{ secrets.GITHUB_TOKEN }}'
       # Profanity
