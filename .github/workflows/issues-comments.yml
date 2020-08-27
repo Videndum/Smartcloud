@@ -19,6 +19,7 @@ jobs:
         continue-on-error: true
 
   slashCommandDispatch:
+    if: github.event.action == 'created'
     runs-on: ubuntu-latest
     steps:
       - name: Get Configurations
@@ -33,7 +34,7 @@ jobs:
         id: scd
         uses: peter-evans/slash-command-dispatch@v2.1.0
         with:
-          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          token: ${{ secrets.ACCESS_TOKEN }}
           config: ${{env.command_settings}}
 
       - name: Edit comment with error message
