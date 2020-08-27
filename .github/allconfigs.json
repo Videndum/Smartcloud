@@ -111,14 +111,6 @@
       "enabled": true
     }
   },
-  "commands": {
-    "secret": false,
-    "enabled": true,
-    "vars": {
-      "enabled": true,
-      "claim": true
-    }
-  },
   "wip": {
     "secret": false,
     "enabled": true,
@@ -297,6 +289,23 @@
       "enabled": true,
       "org": "",
       "project": ""
+    }
+  },
+  "command": {
+    "enabled": true,
+    "vars": {
+      "settings": [
+        {
+          "command": "help",
+          "permission": "none",
+          "issue_type": "both"
+        },
+        {
+          "command": "rebase",
+          "permission": "admin",
+          "issue_type": "pull-request"
+        }
+      ]
     }
   }
 }
