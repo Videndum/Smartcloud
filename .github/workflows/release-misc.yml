@@ -49,6 +49,10 @@ jobs:
       - name: Generate technical debt issue
         if: ${{env.debt_enabled}} == true
         uses: teepsdonnelly/debt-collector@v1.0.0
+        with:
+          title_prefix: 'debt:'
+          body_end: regex
+          token: ${{secrets.GITHUB_TOKEN}}
 
       # Sentry
       - name: Create Sentry release
