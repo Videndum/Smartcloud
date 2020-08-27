@@ -4,7 +4,7 @@ about: Create a report to help us improve
 title: 'bug([context]): '
 ---
 
-<!-- Please use [context] in title to discribe the package related to this issue.
+<!-- Please use [context] in title to describe the package related to this issue.
 Valid options are; smartcloudjs, cli, discord, workflows, components, webfront, console, webdocs
 smartcloud-discord context example: bug(discord): {your title here}
 -->
@@ -15,7 +15,7 @@ smartcloud-discord context example: bug(discord): {your title here}
 
 ### To Reproduce
 
-<!-- Steps to reproduce the behavior:-->
+<!-- Steps to reproduce the behaviour:-->
 
 1. Go to '...'
 2. Click on '....'
@@ -62,14 +62,14 @@ smartcloud-discord context example: bug(discord): {your title here}
 
 ## Bug Checklist
 
-<!-- Please be honest here, we don't mind if you haven't done all these steps, however we do need to know where it's been tested and how extensively we need to test it ourselves.
+<!-- Please be honest here; we don't mind if you haven't done all these steps; however, we need to know where has been tested and how extensively we need to test it ourselves.
 
-We would greatly appriciate if you could maintain this section cleanly and clearly. If someone confirms your bug, add them to the "Bug confirmed by" section. Our bot will automatically detect if you have enough users confirmed to tag this bug as "Bug - Confirmed".
+We would appreciate it if you could maintain this section cleanly and clearly. If someone confirms your bug, add them to the "Bug confirmed by" section. Our bot will automatically detect if you have enough users confirmed to tag this bug as "Bug - Confirmed".
 -->
 
 - [ ] Have reproduced on my application version
-- [ ] Have reproduced on clean installation
-- [ ] Have reproduced on development build
+- [ ] Have reproduced on a clean installation
+- [ ] Have reproduced on a development build
 - [ ] Have included logs or screenshots
 - [ ] Have contacted support via the official website
 - [ ] Have asked the community for guidance
