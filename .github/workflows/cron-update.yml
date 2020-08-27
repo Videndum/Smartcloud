@@ -77,7 +77,7 @@
 #   uses: repo-sync/pull-request@v2
 #   if: ${{steps.commitWorkflow.outputs.changes_detected}} == true || ${{steps.commitConfig.outputs.changes_detected}} == true
 #   with:
-#     github_token: ${{ secrets.ACCESS_TOKEN }}
+#     github_token: ${{ secrets.BOT_TOKEN }}
 #     source_branch: ${{env.auto_branchPrefix}}${{env.auto_branch}}_workflows
 #     destination_branch: ${{env.autoDestination}}
 #     pr_title: 'chore: BREAKING update template files to latest version (${{env.latestTag}})'

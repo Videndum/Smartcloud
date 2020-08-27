@@ -37,13 +37,13 @@
 #         with:
 #           source: ${{env.wiki_docsToWikiDestination}}
 #           destination: ${{env.wiki_docsToWikiSource}}
-#           token: ${{ secrets.ACCESS_TOKEN }}
+#           token: ${{ secrets.BOT_TOKEN }}
 #           branch: ${{env.auto_branchPrefix}}${{env.auto_branch}}_wiki
 #       - name: pull-request
 #         if: ${{env.wiki_enabled}} == true && ${{env.wiki_wikiToDocs}} == true
 #         uses: repo-sync/pull-request@v2
 #         with:
-#           github_token: ${{ secrets.ACCESS_TOKEN }}
+#           github_token: ${{ secrets.BOT_TOKEN }}
 #           source_branch: ${{env.auto_branchPrefix}}${{env.auto_branch}}_wiki
 #           destination_branch: ${{env.auto_destination}}
 #           pr_title: ${{env.wiki_wikiToDocsPRtitle}}
@@ -54,7 +54,7 @@
 #         if: ${{env.wiki_enabled}} == true && ${{env.wiki_wikiToRepo}} == true
 #         uses: andstor/copycat-action@v3
 #         with:
-#           personal_token: ${{ secrets.ACCESS_TOKEN }}
+#           personal_token: ${{ secrets.BOT_TOKEN }}
 #           src_path: ${{env.wiki_docsToRepoSource}}
 #           dst_path: /${{env.wiki_docsToRepoDestination}}
 #           dst_owner: ${{github.repository_owner}}

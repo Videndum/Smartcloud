@@ -62,7 +62,7 @@ jobs:
       - name: Super Labeller
         uses: IvanFon/super-labeler-action@master
         with:
-          github-token: '${{ secrets.GITHUB_TOKEN }}'
+          github-token: '${{ secrets.BOT_TOKEN }}'
       # Label size based (soon to be merged with super labeler)
       - uses: actions-ecosystem/action-size@v2
         if: ${{env.size_enabled}} == true
@@ -78,13 +78,13 @@ jobs:
       - uses: actions-ecosystem/action-remove-labels@v1
         if: ${{env.size_enabled}} == true
         with:
-          github_token: ${{ secrets.github_token }}
+          github_token: ${{ secrets.BOT_TOKEN }}
           labels: ${{ steps.size.outputs.stale_labels }}
         continue-on-error: true
       - uses: actions-ecosystem/action-add-labels@v1
         if: ${{env.size_enabled}} == true
         with:
-          github_token: ${{ secrets.github_token }}
+          github_token: ${{ secrets.BOT_TOKEN }}
           labels: ${{ steps.size.outputs.new_label }}
         continue-on-error: true
 
@@ -94,20 +94,20 @@ jobs:
         with:
           label: ${{env.sponsor_label}}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
         continue-on-error: true
       # - uses: actions/labeler@v2
       #   if: ${{env.path_enabled}} == true
       #   with:
       #     configuration-path: ${{env.path_config}}
-      #     repo-token: ${{ secrets.GITHUB_TOKEN }}
+      #     repo-token: ${{ secrets.BOT_TOKEN }}
       #     continue-on-error: true
       # - uses: TimonVS/pr-labeler-action@v3
       #   if: ${{env.branch_enabled}} == true
       #   with:
       #     configuration-path: ${{env.branch_Config}}
       #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
       #   continue-on-error: true
 
     # Automatically approves
@@ -127,13 +127,13 @@ jobs:
         uses: wktk/conflibot@v1
         if: ${{env.conflict_pull}} == true
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.BOT_TOKEN }}
       - name: check if prs are dirty
         if: ${{env.conflict_master}} == true
         uses: eps1lon/actions-label-merge-conflict@releases/1.x
         with:
           dirtyLabel: ${{env.conflict_dirty}}
-          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          repoToken: ${{ secrets.BOT_TOKEN }}
 
   approval:
     needs:
@@ -166,7 +166,7 @@ jobs:
         if: ${{env.merge_enabled}} == true
         uses: 'pascalgn/automerge-action@v0.9.0'
         env:
-          GITHUB_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+          GITHUB_TOKEN: '${{ secrets.BOT_TOKEN }}'
           MERGE_LABELS: ${{env.merge_labels}}
           MERGE_REMOVE_LABELS: ${{env.merge_deleteLabels}}
           MERGE_METHOD: ${{env.merge_method}}

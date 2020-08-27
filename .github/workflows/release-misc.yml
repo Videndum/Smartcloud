@@ -29,7 +29,7 @@ jobs:
           team: ${{env.inclusive_team}}
           comment: ${{env.inclusive_comment}}
         env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
         continue-on-error: true
 
       # Sync Node meta
@@ -43,7 +43,7 @@ jobs:
           syncDescription: ${{env.syncNode_description}}
           syncHomepage: ${{env.syncNode_homepage}}
           syncKeywords: ${{env.syncNode_keywords}}
-          githubToken: ${{ secrets.ACCESS_TOKEN }}
+          githubToken: ${{ secrets.BOT_TOKEN }}
 
       # Debt Collection
       - name: Generate technical debt issue
@@ -52,7 +52,7 @@ jobs:
         with:
           title_prefix: 'debt:'
           body_end: regex
-          token: ${{secrets.GITHUB_TOKEN}}
+          token: ${{secrets.BOT_TOKEN}}
 
       # Sentry
       - name: Create Sentry release

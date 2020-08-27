@@ -10,7 +10,7 @@ jobs:
       - name: Checkout pull request
         uses: actions/checkout@v2
         with:
-          token: ${{ secrets.PAT }}
+          token: ${{ secrets.BOT_TOKEN }}
           repository: ${{ github.event.client_payload.pull_request.head.repo.full_name }}
           ref: ${{ github.event.client_payload.pull_request.head.ref }}
           fetch-depth: 0
@@ -19,7 +19,7 @@ jobs:
         run: |
           git config --global user.name '${{ github.event.client_payload.github.actor }}'
           git config --global user.email '${{ github.event.client_payload.github.actor }}@users.noreply.github.com'
-          git remote add base https://x-access-token:${{ secrets.PAT }}@github.com/${{ github.event.client_payload.pull_request.base.repo.full_name }}.git
+          git remote add base https://x-access-token:${{ secrets.BOT_TOKEN }}@github.com/${{ github.event.client_payload.pull_request.base.repo.full_name }}.git
           git fetch base ${{ github.event.client_payload.pull_request.base.ref }}
           git rebase base/${{ github.event.client_payload.pull_request.base.ref }}
           git push --force-with-lease
@@ -27,7 +27,7 @@ jobs:
       - name: Update comment
         uses: peter-evans/create-or-update-comment@v1
         with:
-          token: ${{ secrets.PAT }}
+          token: ${{ secrets.BOT_TOKEN }}
           repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
           comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
           body: |
@@ -41,7 +41,7 @@ jobs:
       - name: Update comment
         uses: peter-evans/create-or-update-comment@v1
         with:
-          token: ${{ secrets.PAT }}
+          token: ${{ secrets.BOT_TOKEN }}
           repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
           comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
           body: |

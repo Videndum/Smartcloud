@@ -162,13 +162,13 @@
 #         with:
 #           source: ${{env.wiki_docsToWikiSource}}
 #           destination: ${{env.wiki_docsToWikiDestination}}
-#           token: ${{ secrets.ACCESS_TOKEN }}
+#           token: ${{ secrets.BOT_TOKEN }}
 #       - run: echo ::set-env name=repository_name::$(echo "${{github.repository}}" | awk -F / '{print $2}')
 #       - name: Copy to ${{github.repository}}
 #         if: ${{env.wiki_enabled}} == true && ${{env.wiki_docsToRepo}} == true
 #         uses: andstor/copycat-action@v3
 #         with:
-#           personal_token: ${{ secrets.ACCESS_TOKEN }}
+#           personal_token: ${{ secrets.BOT_TOKEN }}
 #           src_path: ${{env.wiki_docsToRepoSource}}
 #           dst_path: ${{env.wiki_docsToRepoDestination}}
 #           dst_owner: ${{github.repository_owner}}
@@ -193,7 +193,7 @@
 #       - name: pull-request
 #         uses: repo-sync/pull-request@v2
 #         with:
-#           github_token: ${{ secrets.ACCESS_TOKEN }}
+#           github_token: ${{ secrets.BOT_TOKEN }}
 #           source_branch: ${{env.auto_branchPrefix}}${{env.auto_branch}}_release
 #           destination_branch: ${{env.auto_destination}}
 #           pr_title: 'chore: automatic updates from release workflow'

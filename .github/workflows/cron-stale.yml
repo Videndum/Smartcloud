@@ -18,7 +18,7 @@ jobs:
       - uses: actions/stale@v3.0.10
         if: ${{env.stale_enabled}} == true
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token: ${{ secrets.BOT_TOKEN }}
           stale-issue-message: ${{env.stale_issue-message}}
           stale-issue-label: ${{env.stale_issue-label}}
           stale-pr-message: ${{env.stale_pr-message}}

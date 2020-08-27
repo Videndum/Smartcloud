@@ -15,7 +15,7 @@ jobs:
         if: ${{env.checkProfanity}} == true
         uses: tailaiw/mind-your-language-action@v1.0.3
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
         continue-on-error: true
 
   slashCommandDispatch:
@@ -34,7 +34,7 @@ jobs:
         id: scd
         uses: peter-evans/slash-command-dispatch@v2.1.0
         with:
-          token: ${{ secrets.ACCESS_TOKEN }}
+          token: ${{ secrets.BOT_TOKEN }}
           config: ${{env.command_settings}}
 
       - name: Edit comment with error message
