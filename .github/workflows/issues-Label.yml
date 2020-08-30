@@ -22,7 +22,7 @@ jobs:
       - name: Super Labeller
         uses: Videndum/super-labeler-action@v1.0.0
         with:
-          github-token: '${{ secrets.BOT_TOKEN }}'
+          GITHUB_TOKEN: '${{ secrets.BOT_TOKEN }}'
       # Profanity
       - name: Profanity check step
         if: ${{env.profanity_enabled}} == true
