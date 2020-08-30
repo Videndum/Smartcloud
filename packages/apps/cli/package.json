@@ -14,14 +14,18 @@
     "email": "smartcloud@videndum.studios",
     "url": "http://videndum.studios"
   },
-  "contributors": ["Contributors can be found in readme.md"],
+  "contributors": [
+    "Contributors can be found in readme.md"
+  ],
   "license": "GPL-3.0-or-later",
   "main": "lib/index.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
   },
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "bin": {
     "smartcloud": "./lib/index.js"
   },
@@ -43,9 +47,15 @@
     "jsdoc-to-markdown": "^6.0.1",
     "request": "^2.88.2",
     "simple-git": "^2.11.0",
-    "vorpal": "^1.12.0"
+    "vorpal": "^1.12.0",
+    "snyk": "^1.386.0"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
-  }
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepare": "yarn run snyk-protect"
+  },
+  "snyk": true
 }
