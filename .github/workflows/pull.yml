@@ -150,7 +150,7 @@ jobs:
         uses: hmarr/auto-approve-action@v2.0.0
         if: (${{env.approve_enabled}} == true && contains(${{env.auto_whitelist}}, github.actor) || ${{env.approve_enabled}} == true && github.actor == github.repository_owner )
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.BOT_TOKEN }}
 
   automerge:
     needs: approval
