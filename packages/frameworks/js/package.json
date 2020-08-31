@@ -35,7 +35,7 @@
     "@overnightjs/core": "^1.7.4",
     "@types/fs-extra": "^9.0.1",
     "@types/node": "^14.0.14",
-    "standard-version": "^8.0.0",
+    "standard-version": "^9.0.0",
     "tslint": "^6.1.0",
     "typescript": "^3.9.5"
   },
