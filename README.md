@@ -6,6 +6,8 @@ description: >-
 ---
 
 # Smartcloud Artificial Assistant \(SCAA\)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FVidendum%2FSmartcloud.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FVidendum%2FSmartcloud?ref=badge_shield)
+
 
 ![](.gitbook/assets/logo.png)
 
@@ -81,3 +83,6 @@ We originally designed this application to be completely closed-source, therefor
 However, with this said, users who choose not to register a license with us, will not receive support outside our forums and Gitlab support pages.
 {% endhint %}
 
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FVidendum%2FSmartcloud.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FVidendum%2FSmartcloud?ref=badge_large)

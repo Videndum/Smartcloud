@@ -25,8 +25,12 @@
       "path": "./packages/frontend/webfront"
     },
     {
-      "name": "🚀 @videndum/smartcloud-webpanel",
-      "path": "./packages/frontend/webpanel"
+      "name": "🚀 @videndum/smartcloud-console",
+      "path": "./packages/frontend/console"
+    },
+    {
+      "name": "🚀 @videndum/smartcloud-webdocs",
+      "path": "./packages/frontend/docs"
     },
     {
       "name": "⚙️ @videndum/smartcloud-login",
