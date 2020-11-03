@@ -18,18 +18,21 @@
     }
   },
   "logging": {
+    "alert": "",
+    "critical": "",
     "debug": "",
+    "default": "",
+    "emergency": "",
     "error": "",
-    "fatal": "",
     "info": "",
     "level": "",
+    "notice": "",
     "sentry": {
       "config": "",
       "config_dev": "",
       "default": "",
       "initialised": ""
     },
-    "unknown": "",
     "warn": ""
   }
 }

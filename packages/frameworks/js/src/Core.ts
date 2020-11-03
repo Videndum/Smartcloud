@@ -1,7 +1,5 @@
-import { i18 } from './util/Localize'
-import { log } from './util/Logger'
-import { brandStyle } from './util/Chalk'
-class Init {
+import { brandStyle, i18, log } from './index'
+export class Init {
   private package = require('../package.json')
 
   constructor () {
@@ -61,7 +59,7 @@ class Init {
           },
           context: 'dev'
         }),
-        3
+        4
       )
     log(brandStyle.videndumPurple(i18.t('core.init')), 2)
     log(
@@ -70,10 +68,7 @@ class Init {
     )
     log(brandStyle.videndumPurple('hello@videndum.studio'), 2)
     log(brandStyle.videndumPurple('videndum.studio'), 2)
+    log(brandStyle.videndumPurple('videndum.studio'), 5)
+    log(brandStyle.videndumPurple('videndum.studio'), 6)
   }
 }
-
-// process.on('unhandledRejection', error => console.error('Uncaught Promise Rejection', error));
-// process.on('uncaughtException', error => console.error('Uncaught Promise Rejection', error));
-
-export const init = new Init()

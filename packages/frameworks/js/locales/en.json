@@ -18,18 +18,21 @@
     }
   },
   "logging": {
+    "alert": "alert",
+    "critical": "critical",
     "debug": "debug",
+    "default": "unknown",
+    "emergency": "emergency",
     "error": "error",
-    "fatal": "fatal",
     "info": "info",
     "level": "Log level: ",
+    "notice": "notice",
     "sentry": {
       "config": "Sentry is not configured. Please read how to configure sentry for error tracking in the @videndum/smartcloud documentation found at docs.smartcloud.gg",
       "config_dev": "Sentry is not configured. Please read how to configure sentry for error tracking in the @videndum/smartcloud documentation found at docs.smartcloud.gg",
       "default": "",
       "initialised": ""
     },
-    "unknown": "unknown",
     "warn": "warn"
   }
 }

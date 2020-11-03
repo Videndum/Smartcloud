@@ -2,6 +2,7 @@ import { i18 } from './Localize'
 import { logStyle } from './Chalk'
 import * as fs from 'fs'
 import * as Sentry from '@sentry/node'
+import { Logging } from '@google-cloud/logging'
 
 class Log {
   date = 2
@@ -12,41 +13,56 @@ class Log {
   }
   private package = require('../../package.json')
   public sentryConfigured: boolean = false
-  public loglevel: number = 2
+  public loglevel: number = 1
   public readonly sentry = Sentry
   public readonly loglevels = [
-    'unknown',
-    'debug',
-    'info',
-    'warn',
-    'error',
-    'fatal'
+    'default', // (0) The log entry has no assigned severity level.
+    'debug', // (100) Debug or trace information.
+    'info', // (200) Routine information, such as ongoing status or performance.
+    'notice', // (300) Normal but significant events, such as start up, shut down, or a configuration change.
+    'warn', // (400) Warning events might cause problems.
+    'error', // (500) Error events are likely to cause problems.
+    'critical', // (600) Critical events cause more severe problems or outages.
+    'alert', // (700) A person must take an action immediately.
+    'emergency' // (800) One or more systems are unusable.
   ]
+  private cloudlog: any
+  private cloudLog: Logging = new Logging()
+  private cloudLogging: boolean = true
 
-  constructor () {
+  constructor (logName: string) {
     if (process.env.LOGLEVEL) this.loglevel = +process.env.LOGLEVEL
+
     fs.access(this.opts.logDirectory, fs.constants.F_OK, (err: any) => {
       if (!err) {
         return
       } else {
-        this.log(i18.t(`errors.fileDirectory.caught`) + err, 4)
+        this.log(i18.t(`errors.fileDirectory.caught`) + err, 6)
         fs.mkdir(
           this.opts.logDirectory,
           { recursive: false },
           async (err: any) => {
-            if (err) this.log(i18.t(`errors.fileDirectory.thrown`) + err, 5)
-            this.log(i18.t(`errors.fileDirectory.solved`), 2)
+            if (err) this.log(i18.t(`errors.fileDirectory.thrown`) + err, 6)
+            this.log(i18.t(`errors.fileDirectory.solved`), 3)
           }
         )
         return
       }
     })
+    try {
+      this.cloudLog = new Logging({ projectId: process.env.CLOUDPROJECT })
+      this.cloudlog = this.cloudLog.log(logName)
+    } catch (err) {
+      console.log('Cloud Logging Disabled')
+      console.log('Cloud Logging error: ' + err)
+      this.cloudLogging = false
+    }
   }
+
   /**
    * Change the logging level.
    * @param {number | string} level - Logging level to use.
    */
-
   setloglevel (level: number | string) {
     if (typeof level == 'string') {
       if (this.loglevels.indexOf(level) != -1) {
@@ -62,7 +78,7 @@ class Log {
   /**
    * log Data
    * @param  {string} data This is the information to be logged
-   * @param  {number | string} type Optional types. Accepts both Numbers & String values. 1=debug, 2=info, 3=warn, 4=error, 5=fatal
+   * @param  {number | string} type Optional types. Accepts both Numbers & String values. 1=debug, 2=info, 3=notice, 4=warn, 5=error, 6=critical, 7=alert, 8=emergency
    * @example
    * try {
    *  core.user.getUserID(core.license.license_holder_email)
@@ -71,38 +87,57 @@ class Log {
    *  }
    * @return logs data to console, sentry and log file as appropriate
    */
-  log (data: string, type?: number | string) {
+  async log (data: string, type?: number | string) {
     let namedType: string = ''
+
+    // Meta for Cloud Logging
+    let metadata = {
+      resource: {
+        type: 'global'
+      },
+      severity: 'INFO'
+    }
+
+    // Defines log type
     if (type && typeof type == 'string') {
       if (this.loglevels.indexOf(type) != -1) {
-        //@ts-ignore
-        namedType = logStyle[type](
-          `[${i18.t(`logging.${type}`).toUpperCase()}]`
-        )
+        namedType = i18.t(`logging.${type}`).toUpperCase()
         type = this.loglevels.indexOf(type)
       } else {
-        namedType = logStyle['unknown'](
-          `[${i18.t(`logging.unknown`).toUpperCase()}]`
-        )
+        namedType = i18.t(`logging.default`).toUpperCase()
         type = 0
       }
     } else if (typeof type == 'number' && type < this.loglevels.length) {
-      //@ts-ignore
-      namedType = logStyle[this.loglevels[type]](
-        `[${i18.t(`logging.${this.loglevels[type]}`).toUpperCase()}]`
-      )
+      namedType = i18.t(`logging.${this.loglevels[type]}`).toUpperCase()
+      type = type
     } else {
-      namedType = logStyle['unknown'](
-        `[${i18.t(`logging.unknown`).toUpperCase()}]`
-      )
+      namedType = i18.t(`logging.default`).toUpperCase()
       type = 0
     }
-    if (namedType.length < 10) {
-      for (let i = namedType.length; i < 10; i++) {
+    if (namedType.length < 15) {
+      for (let i = namedType.length; i < 15; i++) {
         namedType += ' '
       }
     }
-    if (type >= this.loglevel || process.env.DEBUG == 'true' || type == 0) {
+    //@ts-ignore
+    namedType = logStyle[`${this.loglevels[type]}`](namedType)
+
+    // log to cloud logger
+    let entry = this.cloudlog.entry(metadata, data)
+    if (this.cloudLogging)
+      try {
+        await this.cloudlog.log(entry)
+        if (process.env.DEBUG == 'true' || type == 1)
+          console.log(`cloudLog Logged: ${data}`)
+      } catch (err) {
+        if (process.env.DEBUG == 'true' || type == 1) {
+          console.log(`cloudLog failed to send data: ${data}`)
+          if (err) console.log(`Thrown error: ${err}`)
+        }
+      }
+
+    // Log to local logger
+    if (type >= this.loglevel || process.env.DEBUG == 'true' || type == 1) {
       console.log(`${namedType}     ` + data)
       try {
         fs.appendFile(
@@ -113,28 +148,33 @@ class Log {
           }
         )
       } catch {}
-      if (type >= 4) {
-        if (this.sentryConfigured) {
-          try {
-            this.sentry.withScope((scope: any) => {
-              if (type == 4) scope.setLevel(this.sentry.Severity.Error)
-              if (type == 5) scope.setLevel(this.sentry.Severity.Fatal)
-              this.sentry.captureMessage(data)
-            })
-          } catch (_) {
-            this.log(i18.t(`logging.sentry.default`) + _, 4)
-          }
-        }
-        if (type == 5) process.exitCode = 5
-      }
+      // if (type >= 4) {
+      //   if (this.sentryConfigured) {
+      //     try {
+      //       this.sentry.withScope((scope: any) => {
+      //         if (type == 4) scope.setLevel(this.sentry.Severity.Error)
+      //         if (type == 5) scope.setLevel(this.sentry.Severity.Fatal)
+      //         this.sentry.captureMessage(data)
+      //       })
+      //     } catch (_) {
+      //       this.log(i18.t(`logging.sentry.default`) + _, 4)
+      //     }
+      //   }
+      //   if (type == 5) process.exitCode = 5
+      // }
     }
   }
+
+  /**
+   * Change the logging level.
+   * @param {number | string} level - Logging level to use.
+   */
 
   initialise () {
     this.log(
       i18.t('logging.level') +
         i18.t(`logging.${this.loglevels[logger.loglevel]}`),
-      2
+      3
     )
     if (process.env.DEBUG == 'true') this.log(i18.t('core.debug'), 1)
     if (this.package.version.split('.')[2].split('-')[1]) {
@@ -143,8 +183,7 @@ class Log {
       } else {
         this.log(i18.t('logging.sentry.config', { context: 'dev' }), 3)
       }
-    }
-    if (process.env.SENTRY_DSN) {
+    } else if (process.env.SENTRY_DSN) {
       logger.configureSentry(process.env.SENTRY_DSN)
     } else {
       this.log(i18.t('logging.sentry.config'), 3)
@@ -191,7 +230,7 @@ class Log {
   }
 }
 
-export const logger = new Log()
+export const logger = new Log('my-log')
 logger.initialise()
 export const log = (data: string, type?: number | string) =>
   logger.log(data, type)
