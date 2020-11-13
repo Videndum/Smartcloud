@@ -1,24 +1,30 @@
 {
-    "compilerOptions": {
-      "module": "commonjs",
-      "moduleResolution": "node",
-      "noImplicitReturns": true,
-      "noUnusedLocals": true,
-      "outDir": "lib",
-      "pretty": true,
-      "sourceMap": true,
-      "inlineSources": true,
-      "sourceRoot": "src",
-      "strict": true,
-      "allowJs": false,
-      "target": "ES2017",
-      "resolveJsonModule": true,
-      "esModuleInterop": true,
-      "baseUrl": "/",
-      "declaration": true
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "outDir": "lib",
+    "pretty": true,
+    "sourceMap": true,
+    "inlineSources": true,
+    "sourceRoot": "/src",
+    "strict": true,
+    "allowJs": true,
+    "target": "ES2017",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@discord/*": ["/src/discord/*"],
+      "@util/*": ["/src/util/*"],
+      "@logger": ["/src/util/Logger", "/src/util/Logger*"],
+      "@i18": ["/src/util/Localize"]
     },
-    "compileOnSave": true,
-    "include": [
-        "./src/**/*"
-    ]
+    "declaration": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "compileOnSave": true,
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules", "**/__tests__/*"]
 }

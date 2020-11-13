@@ -1,0 +1,35 @@
+/*----------------------------------------------------
+@Author: Jonathan A Stevens
+@Company: TGT Media Ltd
+@URL: http://tgtmedia.org
+@Email: jonathan@tgtmedia.org
+@Date Made: January 2020
+
+----------------------------------------------------------------
+
+  Loader Styles
+
+----------------------------------------------------------------*/
+#loaderContainer {
+  justify-content: center;
+  overflow: hidden;
+  margin: 0; }
+
+#logo {
+  -webkit-app-region: drag;
+  position: fixed;
+  left: 100px;
+  top: 125px;
+  width: 100px;
+  z-index: 0;
+  transition: opacity 1s; }
+
+#loading {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 300px;
+  z-index: 1;
+  transition: opacity 1s; }
+
+/*# sourceMappingURL=main.css.map */

@@ -1,7 +1,10 @@
 lib
 node_modules
+logs
+*.log
 
 #amplify
+amplify/team-provider-info.json
 amplify/\#current-cloud-backend
 amplify/.config/local-*
 amplify/mock-data

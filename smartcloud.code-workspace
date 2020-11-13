@@ -59,7 +59,8 @@
       "visualstudioexptteam.vscodeintellicode",
       "vsls-contrib.gistfs",
       "vsls-contrib.gitdoc",
-      "yzhang.markdown-all-in-one"
+      "yzhang.markdown-all-in-one",
+      "prisma.vscode-graphql"
     ]
   }
 }
