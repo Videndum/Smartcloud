@@ -6,35 +6,35 @@
     },
     {
       "name": "📦 @videndum/smartcloudJS",
-      "path": "./packages/frameworks/js"
+      "path": "/packages/frameworks/js"
     },
     {
       "name": "📦 @videndum/smartcloudCLI",
-      "path": "./packages/apps/cli"
+      "path": "/packages/apps/cli"
     },
     {
       "name": "📦 @videndum/smartcloud-discord",
-      "path": "./packages/containers/discord"
+      "path": "/packages/containers/discord"
     },
     {
       "name": "📦 @videndum/smartcloud-components",
-      "path": "./packages/frontend/components"
+      "path": "/packages/frontend/components"
     },
     {
       "name": "🚀 @videndum/smartcloud-webfront",
-      "path": "./packages/frontend/webfront"
+      "path": "/packages/frontend/webfront"
     },
     {
       "name": "🚀 @videndum/smartcloud-console",
-      "path": "./packages/frontend/console"
+      "path": "/packages/frontend/console"
     },
     {
       "name": "🚀 @videndum/smartcloud-webdocs",
-      "path": "./packages/frontend/docs"
+      "path": "/packages/frontend/docs"
     },
     {
       "name": "⚙️ @videndum/smartcloud-login",
-      "path": "./packages/serverless/login"
+      "path": "/packages/serverless/login"
     }
   ],
   "settings": {},

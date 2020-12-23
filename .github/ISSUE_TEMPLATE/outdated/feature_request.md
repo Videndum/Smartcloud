@@ -5,8 +5,8 @@ title: 'feat([context]): '
 ---
 
 <!-- Please use [context] in title to describe the package related to this issue.
-Valid options are; smartcloudjs, cli, discord, workflows, components, webfront, console, webdocs
-smartcloud-discord context example: bug(discord): {your title here}
+Valid options are; Release, Label, Variable, Installer
+context example: bug(installer): {your title here}
 -->
 
 ### My feature request explained
@@ -40,25 +40,16 @@ Include:
 
 <!-- Please tell us what devices should be able to do the feature. Please note that some devices may have differing capabilities depending on OS version. -->
 
-<!-- Please uncomment for desktop feature
+<!-- Please delete all information not relivent-->
 - Version: [e.g. 22]
 - Platform: [e.g. macOS, Google Cloud, ubuntu 18.04]
--->
-
-<!-- Please uncomment for mobile feature
-- Version: [e.g. 22]
-- Device: [e.g. iPhone6]
-- Platform: [e.g. iOS, Andriod]
--->
-
-<!-- Please uncomment relivent additional information
 - Browser: [e.g. stock browser, safari]
 - Node Version: [e.g. v16.8.0]
 - Yarn Version: [e.g. v1.22.4]
 - Docker Version: [e.g. Docker version 19.03.12, build 48a66213fe]
-- Package(s): [e.g. @videndum/smartcloudjs]
+- Package(s): [e.g. @videndum/release-mastermind]
 - URL: [e.g. https://console.smartcloud.gg/admin]
--->
+
 
 ### What does success look like, and how can we measure
 

@@ -5,8 +5,8 @@ title: 'maintenance([context]): '
 ---
 
 <!-- Please use [context] in title to describe the package related to this issue.
-Valid options are; smartcloudjs, cli, discord, workflows, components, webfront, console, webdocs
-smartcloud-discord context example: bug(discord): {your title here}
+Valid options are; Release, Label, Variable, Installer
+context example: bug(installer): {your title here}
 -->
 
 ## Maintenance Required

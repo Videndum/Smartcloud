@@ -8,9 +8,8 @@ title: '<type>([context]): '
 Please use <type> in title to describe the type of issue you are raising. Note that we use semantic titles in our pull requests, so where possible please stick to that format. 
 
 Please use [context] in title to describe the package related to this issue.
-Valid options are; smartcloudjs, cli, discord, workflows, components, webfront, console, webdocs
-smartcloud-discord context example: bug(discord): {your title here}
-
+Valid options are; Release, Label, Variable, Installer
+context example: bug(installer): {your title here}
 -->
 
 ## Issue details
