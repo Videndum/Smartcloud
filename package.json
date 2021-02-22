@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "commitizen": "^4.2.1",
-    "concurrently": "^5.2.0",
+    "concurrently": "^6.0.0",
     "conventional-changelog-cli": "^2.1.0",
     "cz-conventional-changelog": "3.3.0",
     "husky": "^4.2.5",
