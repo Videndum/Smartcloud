@@ -1,0 +1,10 @@
+export { AggregateDiscordUserArgs } from "./AggregateDiscordUserArgs";
+export { CreateDiscordUserArgs } from "./CreateDiscordUserArgs";
+export { DeleteDiscordUserArgs } from "./DeleteDiscordUserArgs";
+export { DeleteManyDiscordUserArgs } from "./DeleteManyDiscordUserArgs";
+export { FindFirstDiscordUserArgs } from "./FindFirstDiscordUserArgs";
+export { FindManyDiscordUserArgs } from "./FindManyDiscordUserArgs";
+export { FindUniqueDiscordUserArgs } from "./FindUniqueDiscordUserArgs";
+export { UpdateDiscordUserArgs } from "./UpdateDiscordUserArgs";
+export { UpdateManyDiscordUserArgs } from "./UpdateManyDiscordUserArgs";
+export { UpsertDiscordUserArgs } from "./UpsertDiscordUserArgs";

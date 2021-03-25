@@ -1,0 +1,16 @@
+export { ActionRelationsResolver } from "./Action/ActionRelationsResolver";
+export { AdminOnGuildsRelationsResolver } from "./AdminOnGuilds/AdminOnGuildsRelationsResolver";
+export { BotRelationsResolver } from "./Bot/BotRelationsResolver";
+export { CommandRelationsResolver } from "./Command/CommandRelationsResolver";
+export { DiscordUserRelationsResolver } from "./DiscordUser/DiscordUserRelationsResolver";
+export { GuildRelationsResolver } from "./Guild/GuildRelationsResolver";
+export { HostRelationsResolver } from "./Host/HostRelationsResolver";
+export { ManagerRelationsResolver } from "./Manager/ManagerRelationsResolver";
+export { PATRelationsResolver } from "./PAT/PATRelationsResolver";
+export { ShardRelationsResolver } from "./Shard/ShardRelationsResolver";
+export { TransactionRelationsResolver } from "./Transaction/TransactionRelationsResolver";
+export { TwitchAuthRelationsResolver } from "./TwitchAuth/TwitchAuthRelationsResolver";
+export { TwitchUserRelationsResolver } from "./TwitchUser/TwitchUserRelationsResolver";
+export { TwitterUserRelationsResolver } from "./TwitterUser/TwitterUserRelationsResolver";
+export { UserRelationsResolver } from "./User/UserRelationsResolver";
+export { UsersOnGuildsRelationsResolver } from "./UsersOnGuilds/UsersOnGuildsRelationsResolver";

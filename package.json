@@ -1,38 +1,29 @@
 {
-  "name": "@videndum/smartcloud",
-  "homepage": "https://smartcloud.gg/",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Videndum/Smartcloud.git"
-  },
-  "bugs": {
-    "email": "bugs@smartcloud.gg",
-    "url": "https://github.com/Videndum/Smartcloud/issues"
-  },
-  "author": {
-    "name": "Videndum Studios",
-    "email": "smartcloud@videndum.studios",
-    "url": "http://videndum.studios"
-  },
-  "contributors": [
-    "Contributors can be found in readme.md"
-  ],
-  "license": "GPL-3.0-or-later",
-  "scripts": {
-    "postinstall": "lerna bootstrap",
-    "start": "lerna run start"
-  },
-  "devDependencies": {
-    "commitizen": "^4.2.1",
-    "concurrently": "^5.2.0",
-    "conventional-changelog-cli": "^2.1.0",
-    "cz-conventional-changelog": "3.3.0",
-    "husky": "^4.2.5",
-    "lerna": "^3.22.1",
-    "prettier-plugin-organize-imports": "^1.1.1",
-    "prettier-plugin-pkg": "^0.8.0",
-    "prettier-plugin-sh": "^0.6.0",
-    "prettier-standard": "^16.4.1"
-  },
-  "private": true
+    "name": "smartcloud",
+    "scripts": {
+        "dev:format": "prettier --config .prettier.json --write .",
+        "dev:format-check": "prettier --config .prettier.json --check .",
+        "start:functions:manager:database": "npm run tsc && functions-framework --target=handler --source=src/functions/manager/database",
+        "tsc": "tsc -p ."
+    },
+    "dependencies": {
+        "@google-cloud/functions-framework": "^1.7.1",
+        "@prisma/client": "^2.16.1",
+        "apollo-server-cloud-functions": "^2.20.0",
+        "graphql": "^15.5.0",
+        "graphql-fields": "^2.0.3",
+        "graphql-type-json": "^0.3.2",
+        "reflect-metadata": "^0.1.13",
+        "type-graphql": "^1.1.1"
+    },
+    "devDependencies": {
+        "@prisma/cli": "^2.16.1",
+        "@types/graphql-fields": "^1.3.3",
+        "@types/node": "^10.0.0",
+        "prettier": "^2.2.1",
+        "prettier-plugin-organize-imports": "^1.1.1",
+        "prettier-plugin-pkg": "^0.8.0",
+        "prisma": "^2.16.1",
+        "typegraphql-prisma": "^0.10.2"
+    }
 }

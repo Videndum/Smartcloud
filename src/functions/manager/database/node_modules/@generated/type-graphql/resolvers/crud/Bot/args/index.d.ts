@@ -1,0 +1,10 @@
+export { AggregateBotArgs } from "./AggregateBotArgs";
+export { CreateBotArgs } from "./CreateBotArgs";
+export { DeleteBotArgs } from "./DeleteBotArgs";
+export { DeleteManyBotArgs } from "./DeleteManyBotArgs";
+export { FindFirstBotArgs } from "./FindFirstBotArgs";
+export { FindManyBotArgs } from "./FindManyBotArgs";
+export { FindUniqueBotArgs } from "./FindUniqueBotArgs";
+export { UpdateBotArgs } from "./UpdateBotArgs";
+export { UpdateManyBotArgs } from "./UpdateManyBotArgs";
+export { UpsertBotArgs } from "./UpsertBotArgs";

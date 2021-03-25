@@ -1,0 +1,10 @@
+export { AggregateManagerArgs } from "./AggregateManagerArgs";
+export { CreateManagerArgs } from "./CreateManagerArgs";
+export { DeleteManagerArgs } from "./DeleteManagerArgs";
+export { DeleteManyManagerArgs } from "./DeleteManyManagerArgs";
+export { FindFirstManagerArgs } from "./FindFirstManagerArgs";
+export { FindManyManagerArgs } from "./FindManyManagerArgs";
+export { FindUniqueManagerArgs } from "./FindUniqueManagerArgs";
+export { UpdateManagerArgs } from "./UpdateManagerArgs";
+export { UpdateManyManagerArgs } from "./UpdateManyManagerArgs";
+export { UpsertManagerArgs } from "./UpsertManagerArgs";

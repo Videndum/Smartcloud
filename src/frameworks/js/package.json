@@ -1,0 +1,53 @@
+{
+  "name": "@videndum/smartcloudjs",
+  "version": "0.0.1-dev",
+  "description": "Smartcloud Discord Container",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Videndum/smartcloud.git",
+    "directory": "packages/frameworks/js"
+  },
+  "homepage": "https://smartcloud.gg/packages/js",
+  "author": "Jonathan Stevens <jonathan@videndum.studio>",
+  "license": "GPL-3.0-or-later",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "doc": "docs",
+    "test": "__tests__"
+  },
+  "scripts": {
+    "build": "npm run dev:tsc",
+    "dev:format": "prettier --config .prettier.json --write .",
+    "dev:format-check": "prettier --config .prettier.json --check .",
+    "dev:run": "npm run build && npm run dev:format && node lib/index.js",
+    "dev:test": "jest --json --outputFile=result.json --testLocationInResults",
+    "dev:tsc": "tsc -p tsconfig.json",
+    "run": "node lib/index.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@videndum/utilities": "^1.0.0-alpha.9",
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "@overnightjs/core": "^1.7.4",
+    "@types/fs-extra": "^9.0.1",
+    "@types/node": "^14.0.14",
+    "@types/ws": "^7.4.0",
+    "prettier": "^2.2.1",
+    "prettier-plugin-organize-imports": "^1.1.1",
+    "prettier-plugin-pkg": "^0.8.0",
+    "tslint": "^6.1.0",
+    "typescript": "^3.9.5"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "logs"
+    ]
+  },
+  "source": "src/index.ts"
+}

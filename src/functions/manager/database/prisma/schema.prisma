@@ -1,0 +1,247 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-1.0.x"]
+}
+
+generator backend {
+  provider = "typegraphql-prisma"
+}
+
+generator frontend {
+  provider           = "typegraphql-prisma"
+  output             = "../graphql"
+  // emitTranspiledCode = "true"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+///
+model Manager {
+  id              String        @id @default(uuid())
+  createdAt       DateTime      @default(now())
+  ownerId         String
+  ip              String
+  url             String
+  port            Int           @default(80)
+  type            ManagerLevels @default(VALIDATOR)
+  restartSchedule String
+  downtimeHistory Json[]
+  tasksCompleted  Int           @default(-1)
+  parentID        String?
+  owner           User          @relation(fields: [ownerId], references: [id])
+  parentManager   Manager?      @relation("PubSubManagers", fields: [parentID], references: [id])
+  childManagers   Manager[]     @relation("PubSubManagers")
+  transaction     transaction[]
+  Manager_B       Manager[]     @relation("validatorManagers")
+  Manager_A       Manager[]     @relation("validatorManagers")
+}
+
+model Host {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  ownerId     String
+  ip          String
+  url         String
+  port        Int      @default(80)
+  shardLimit  Int      @default(1)
+  owner       User     @relation(fields: [ownerId], references: [id])
+  bots        Bot[]    @relation("hosts")
+  priorityBot Bot[]    @relation("priorityHost")
+  shards      Shard[]
+}
+
+model Bot {
+  id                Int        @id @default(autoincrement())
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+  ownerId           String
+  hostsId           Int
+  priorityHostId    Int?
+  discordToken      String?    @unique
+  twitterToken      String?    @unique
+  twitchAuthId      Int
+  recommendedShards Int        @default(1)
+  currentShards     Int        @default(0)
+  hosts             Host       @relation("hosts", fields: [hostsId], references: [id])
+  owner             User       @relation(fields: [ownerId], references: [id])
+  priorityHost      Host?      @relation("priorityHost", fields: [priorityHostId], references: [id])
+  twitchAuth        TwitchAuth @relation(fields: [twitchAuthId], references: [id])
+  shards            Shard[]
+}
+
+model Shard {
+  id        String      @id @default(cuid())
+  createdAt DateTime    @default(now())
+  lanchedAt DateTime?   @updatedAt
+  hostId    Int
+  botId     Int
+  status    ShardStatus @default(REGISTERED)
+  shardID   Int
+  bot       Bot         @relation(fields: [botId], references: [id])
+  Host      Host        @relation(fields: [hostId], references: [id])
+}
+
+model User {
+  id          String        @id @default(cuid())
+  firstName   String?
+  lastName    String?
+  email       String        @unique
+  password    String
+  isAdmin     Boolean       @default(false)
+  actions     Action[]
+  Bot         Bot[]
+  commands    Command[]
+  discord     DiscordUser?
+  Hosts       Host[]
+  Manager     Manager[]
+  pat         PAT[]
+  twitch      TwitchUser?
+  TwitterUser TwitterUser[]
+}
+
+model PAT {
+  id          String        @id @default(uuid())
+  userId      String
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  status      PATStatus     @default(DISABLED)
+  user        User          @relation(fields: [userId], references: [id])
+  transaction transaction[]
+}
+
+model transaction {
+  id                 String    @id @default(cuid())
+  createdAt          DateTime  @default(now())
+  completedAt        DateTime?
+  managerId          String
+  patId              String?
+  suspicious         Boolean   @default(false)
+  fraudulent         Boolean   @default(false)
+  reversedAt         DateTime?
+  responsibleManager Manager   @relation(fields: [managerId], references: [id])
+  pat                PAT?      @relation(fields: [patId], references: [id])
+}
+
+model DiscordUser {
+  id            String          @id
+  username      String
+  discrim       Int
+  userId        String?         @unique
+  user          User?           @relation(fields: [userId], references: [id])
+  administates  AdminOnGuilds[]
+  UsersOnGuilds UsersOnGuilds[]
+}
+
+model guild {
+  id      Int             @id
+  name    String
+  admins  AdminOnGuilds[]
+  members UsersOnGuilds[]
+}
+
+model UsersOnGuilds {
+  userId    String
+  guildId   Int
+  createdAt DateTime    @default(now())
+  guild     guild       @relation(fields: [guildId], references: [id])
+  user      DiscordUser @relation(fields: [userId], references: [id])
+
+  @@id([userId, guildId])
+}
+
+model AdminOnGuilds {
+  userId    String
+  guildId   Int
+  createdAt DateTime    @default(now())
+  guild     guild       @relation(fields: [guildId], references: [id])
+  user      DiscordUser @relation(fields: [userId], references: [id])
+
+  @@id([userId, guildId])
+}
+
+model Command {
+  id           String               @id @default(cuid())
+  ownerId      String
+  registeredAt DateTime             @default(now())
+  version      Int
+  usage        Int                  @default(0)
+  cost         Int                  @default(0)
+  type         DiscordExecutionType
+  url          String
+  owner        User                 @relation(fields: [ownerId], references: [id])
+}
+
+model Action {
+  id           Int                  @id @default(autoincrement())
+  ownerId      String
+  registeredAt DateTime             @default(now())
+  version      Int
+  usage        Int                  @default(0)
+  cost         Int                  @default(0)
+  type         DiscordExecutionType
+  url          String
+  owner        User                 @relation(fields: [ownerId], references: [id])
+}
+
+model TwitchUser {
+  id           Int     @id @default(autoincrement())
+  username     String
+  accessToken  String
+  refreshToken String
+  userId       String? @unique
+  user         User?   @relation(fields: [userId], references: [id])
+}
+
+model TwitchAuth {
+  id            Int    @id @default(autoincrement())
+  clientID      String @unique
+  twitchSecret  String
+  sessionSecret String
+  Bot           Bot[]
+}
+
+model TwitterUser {
+  id       String  @id
+  username String
+  discrim  Int
+  userId   String?
+  user     User?   @relation(fields: [userId], references: [id])
+}
+
+enum TransactionTypes {
+  DISCORD
+  TWITCH
+  TWITTER
+  COMMERSE
+}
+
+enum ShardStatus {
+  REGISTERED
+  STARTING
+  ONLINE
+  DISCONNECTED
+  EXPIRED
+}
+
+enum PATStatus {
+  ENABLED
+  DISABLED
+  REVOKED
+  EXPOSED
+}
+
+enum ManagerLevels {
+  ROOT
+  AUTHORISED
+  SHADOW
+  VALIDATOR
+}
+
+enum DiscordExecutionType {
+  JSON
+  JS
+  PY
+}

@@ -1,0 +1,10 @@
+export { AggregateAdminOnGuildsArgs } from "./AggregateAdminOnGuildsArgs";
+export { CreateAdminOnGuildsArgs } from "./CreateAdminOnGuildsArgs";
+export { DeleteAdminOnGuildsArgs } from "./DeleteAdminOnGuildsArgs";
+export { DeleteManyAdminOnGuildsArgs } from "./DeleteManyAdminOnGuildsArgs";
+export { FindFirstAdminOnGuildsArgs } from "./FindFirstAdminOnGuildsArgs";
+export { FindManyAdminOnGuildsArgs } from "./FindManyAdminOnGuildsArgs";
+export { FindUniqueAdminOnGuildsArgs } from "./FindUniqueAdminOnGuildsArgs";
+export { UpdateAdminOnGuildsArgs } from "./UpdateAdminOnGuildsArgs";
+export { UpdateManyAdminOnGuildsArgs } from "./UpdateManyAdminOnGuildsArgs";
+export { UpsertAdminOnGuildsArgs } from "./UpsertAdminOnGuildsArgs";

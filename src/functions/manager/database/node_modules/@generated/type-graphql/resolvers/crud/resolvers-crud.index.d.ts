@@ -1,0 +1,16 @@
+export { ActionCrudResolver } from "./Action/ActionCrudResolver";
+export { AdminOnGuildsCrudResolver } from "./AdminOnGuilds/AdminOnGuildsCrudResolver";
+export { BotCrudResolver } from "./Bot/BotCrudResolver";
+export { CommandCrudResolver } from "./Command/CommandCrudResolver";
+export { DiscordUserCrudResolver } from "./DiscordUser/DiscordUserCrudResolver";
+export { GuildCrudResolver } from "./Guild/GuildCrudResolver";
+export { HostCrudResolver } from "./Host/HostCrudResolver";
+export { ManagerCrudResolver } from "./Manager/ManagerCrudResolver";
+export { PATCrudResolver } from "./PAT/PATCrudResolver";
+export { ShardCrudResolver } from "./Shard/ShardCrudResolver";
+export { TransactionCrudResolver } from "./Transaction/TransactionCrudResolver";
+export { TwitchAuthCrudResolver } from "./TwitchAuth/TwitchAuthCrudResolver";
+export { TwitchUserCrudResolver } from "./TwitchUser/TwitchUserCrudResolver";
+export { TwitterUserCrudResolver } from "./TwitterUser/TwitterUserCrudResolver";
+export { UserCrudResolver } from "./User/UserCrudResolver";
+export { UsersOnGuildsCrudResolver } from "./UsersOnGuilds/UsersOnGuildsCrudResolver";

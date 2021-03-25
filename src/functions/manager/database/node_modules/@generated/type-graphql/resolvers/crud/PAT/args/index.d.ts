@@ -1,0 +1,10 @@
+export { AggregatePATArgs } from "./AggregatePATArgs";
+export { CreatePATArgs } from "./CreatePATArgs";
+export { DeleteManyPATArgs } from "./DeleteManyPATArgs";
+export { DeletePATArgs } from "./DeletePATArgs";
+export { FindFirstPATArgs } from "./FindFirstPATArgs";
+export { FindManyPATArgs } from "./FindManyPATArgs";
+export { FindUniquePATArgs } from "./FindUniquePATArgs";
+export { UpdateManyPATArgs } from "./UpdateManyPATArgs";
+export { UpdatePATArgs } from "./UpdatePATArgs";
+export { UpsertPATArgs } from "./UpsertPATArgs";

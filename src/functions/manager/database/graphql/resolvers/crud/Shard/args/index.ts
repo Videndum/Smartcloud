@@ -1,0 +1,10 @@
+export { AggregateShardArgs } from "./AggregateShardArgs";
+export { CreateShardArgs } from "./CreateShardArgs";
+export { DeleteManyShardArgs } from "./DeleteManyShardArgs";
+export { DeleteShardArgs } from "./DeleteShardArgs";
+export { FindFirstShardArgs } from "./FindFirstShardArgs";
+export { FindManyShardArgs } from "./FindManyShardArgs";
+export { FindUniqueShardArgs } from "./FindUniqueShardArgs";
+export { UpdateManyShardArgs } from "./UpdateManyShardArgs";
+export { UpdateShardArgs } from "./UpdateShardArgs";
+export { UpsertShardArgs } from "./UpsertShardArgs";

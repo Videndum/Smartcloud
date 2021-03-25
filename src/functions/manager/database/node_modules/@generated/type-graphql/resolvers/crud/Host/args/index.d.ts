@@ -1,0 +1,10 @@
+export { AggregateHostArgs } from "./AggregateHostArgs";
+export { CreateHostArgs } from "./CreateHostArgs";
+export { DeleteHostArgs } from "./DeleteHostArgs";
+export { DeleteManyHostArgs } from "./DeleteManyHostArgs";
+export { FindFirstHostArgs } from "./FindFirstHostArgs";
+export { FindManyHostArgs } from "./FindManyHostArgs";
+export { FindUniqueHostArgs } from "./FindUniqueHostArgs";
+export { UpdateHostArgs } from "./UpdateHostArgs";
+export { UpdateManyHostArgs } from "./UpdateManyHostArgs";
+export { UpsertHostArgs } from "./UpsertHostArgs";
