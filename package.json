@@ -24,6 +24,6 @@
         "prettier-plugin-organize-imports": "^1.1.1",
         "prettier-plugin-pkg": "^0.8.0",
         "prisma": "^2.16.1",
-        "typegraphql-prisma": "^0.10.2"
+        "typegraphql-prisma": "^0.10.3"
     }
 }
