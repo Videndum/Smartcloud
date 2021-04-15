@@ -9,7 +9,7 @@
     "dependencies": {
         "@google-cloud/functions-framework": "^1.7.1",
         "@prisma/client": "^2.16.1",
-        "apollo-server-cloud-functions": "^2.20.0",
+        "apollo-server-cloud-functions": "^2.23.0",
         "graphql": "^15.5.0",
         "graphql-fields": "^2.0.3",
         "graphql-type-json": "^0.3.2",
